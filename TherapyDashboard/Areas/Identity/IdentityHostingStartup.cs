@@ -21,6 +21,7 @@ namespace TherapyDashboard.Areas.Identity
                         context.Configuration.GetConnectionString("TherapyDashboardContextConnection")));
 
                 services.AddDefaultIdentity<TherapyDashboardUser>()
+                    .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<TherapyDashboardContext>();
             });
         }
