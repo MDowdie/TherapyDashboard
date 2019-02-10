@@ -14,6 +14,11 @@ namespace TherapyDashboard.Areas.Identity.Data
         public const string Intern = "Intern";
         public const string IT = "I.T.";
         public const string Pending = "Pending"; // user role not assigned yet, and needs assigning
+
+        public static string[] ToArray = { "Admin", "Counselor", "Intern", "I.T.", "Pending" };
+
+
+
     }
 
 
