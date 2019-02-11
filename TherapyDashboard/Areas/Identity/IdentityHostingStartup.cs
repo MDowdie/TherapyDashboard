@@ -26,7 +26,7 @@ namespace TherapyDashboard.Areas.Identity
 
                 services.AddAuthorization(options =>
                 {
-                    options.AddPolicy("AnyValidUser", policy => policy.RequireRole(Roles.Valid));
+                    options.AddPolicy("AnyValidUser", policy => policy.RequireRole(Roles.AnyValidUser));
                     options.AddPolicy("CanEditAccounts", policy => policy.RequireRole(Roles.CanEditAccounts));
                     options.AddPolicy("CanModifyAssessments", policy => policy.RequireRole(Roles.CanModifyAssessmentsAndQuestions));
                     options.AddPolicy("CanConductAssessments", policy => policy.RequireRole(Roles.CanConductAssessments));

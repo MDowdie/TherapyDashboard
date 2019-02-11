@@ -19,7 +19,9 @@ namespace TherapyDashboard.Areas.Identity.Data
 
         // lists of roles used in many, MANY different locations across the project. hard-coded, I know. must be kept up-to-date.
         public static string[] ToArray = { "Admin", "Counselor", "Intern", "I.T.", "Pending", "Lockout" }; // used in Views to get list of possible roles in foreach scenarios; must be kept up-to-date
-        public static string[] Valid = { "Admin", "Counselor", "Intern", "I.T."}; // A list of all arrays, but does not include Lockout or Pending. Is used in IdentityHostingStartup to recognize all roles allowed on the site. If someone's been set to Lockout, they'll be able to log in, but be unable to do anything. Must be kept up-to-date.
+
+        // arrays for policies. names of policy are same as name of variable at time of writing, but hardcoded strings elsewhere.
+        public static string[] AnyValidUser = { "Admin", "Counselor", "Intern", "I.T."}; // A list of all arrays, but does not include Lockout or Pending. Is used in IdentityHostingStartup to recognize all roles allowed on the site. If someone's been set to Lockout, they'll be able to log in, but be unable to do anything. Must be kept up-to-date.
         public static string[] CanEditAccounts = { "Admin", "I.T." };
         public static string[] CanModifyAssessmentsAndQuestions = { "Admin", "Counselor" };
         public static string[] CanConductAssessments = { "Admin", "Counselor", "Intern" };
