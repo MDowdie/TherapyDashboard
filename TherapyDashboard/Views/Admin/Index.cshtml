@@ -27,8 +27,9 @@
                     Role
                 </th>
                 <th>
-
+                    Pending Password Reset
                 </th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -49,17 +50,18 @@
                 <td>
                     @ViewBag.UserRole[item.Id]
                 </td>
+                <th><a asp-action="RequirePasswordResetOnNextLogin" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.RequirePasswordResetOnNextLogin)</a></th>
                 <td>
                     
                     <div class="btn-group">
                         <button class="btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Assign Role</button>
                         <div class="dropdown-menu">
-                            @foreach (var role in TherapyDashboard.Areas.Identity.Data.Roles.ToArray) {
+                            @foreach (var role in TherapyDashboard.Areas.Identity.Data.RoleType.ToArray) {
                                 <a class="dropdown-item" href="/Admin/AssignRole/@item.Id?role=@role">@role</a>
                             }
                         </div>
                     </div>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                         <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                     

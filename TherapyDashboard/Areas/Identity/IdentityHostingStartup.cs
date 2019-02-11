@@ -26,11 +26,11 @@ namespace TherapyDashboard.Areas.Identity
 
                 services.AddAuthorization(options =>
                 {
-                    options.AddPolicy("AnyValidUser", policy => policy.RequireRole(Roles.AnyValidUser));
-                    options.AddPolicy("CanEditAccounts", policy => policy.RequireRole(Roles.CanEditAccounts));
-                    options.AddPolicy("CanModifyAssessments", policy => policy.RequireRole(Roles.CanModifyAssessmentsAndQuestions));
-                    options.AddPolicy("CanConductAssessments", policy => policy.RequireRole(Roles.CanConductAssessments));
-                    options.AddPolicy("CanGenerateReports", policy => policy.RequireRole(Roles.CanGenerateReports));
+                    options.AddPolicy("AnyValidUser", policy => policy.RequireRole(RoleType.AnyValidUser));
+                    options.AddPolicy("CanEditAccounts", policy => policy.RequireRole(RoleType.CanEditAccounts));
+                    options.AddPolicy("CanModifyAssessments", policy => policy.RequireRole(RoleType.CanModifyAssessmentsAndQuestions));
+                    options.AddPolicy("CanConductAssessments", policy => policy.RequireRole(RoleType.CanConductAssessments));
+                    options.AddPolicy("CanGenerateReports", policy => policy.RequireRole(RoleType.CanGenerateReports));
                 });
             });
         }

@@ -8,16 +8,18 @@ using Microsoft.AspNetCore.Identity;
 using TherapyDashboard.Areas.Identity.Data;
 using TherapyDashboard.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 
 namespace TherapyDashboard.Controllers
 {
-    [Authorize(Policy ="CanEditAccounts")]
+    //[Authorize(Policy ="CanEditAccounts")]
     public class AdminController : Controller
     {
         #region toolbox setup
         private readonly UserManager<TherapyDashboardUser> _userManager;
         private readonly TherapyDashboardContext _context;
         private readonly RoleManager<IdentityRole> _roleManager;
+
 
         public AdminController(TherapyDashboardContext context, UserManager<TherapyDashboardUser> userManager, RoleManager<IdentityRole> roleManager)
         {
@@ -76,6 +78,18 @@ namespace TherapyDashboard.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<ActionResult> RequirePasswordResetOnNextLogin(string id)
+        {
+            var User = await _userManager.FindByIdAsync(id);// get user
+
+            User.RequirePasswordResetOnNextLogin = true; // set changes
+
+            var result = await _userManager.UpdateAsync(User); // implement changes
+
+            return RedirectToAction(nameof(Index)); // return to view
+        }
+
+        
 
 
         #region CRUD todo's

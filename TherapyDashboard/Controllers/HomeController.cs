@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,15 +11,47 @@ using TherapyDashboard.Models;
 
 namespace TherapyDashboard.Controllers
 {
+    
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public readonly UserManager<TherapyDashboardUser> _userManager;
+        public readonly SignInManager<TherapyDashboardUser> _signInManager;
+        
+
+        public HomeController(UserManager<TherapyDashboardUser> userManager, SignInManager<TherapyDashboardUser> signInManager)
         {
+            _userManager = userManager;
+            _signInManager = signInManager;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            //if, on next login, the user is required to change their password, redirect them directly to the password change page
+            if (User.Identity.IsAuthenticated) // if user logged in
+            {
+                var CurrentLoggedInUser = await _userManager.FindByIdAsync(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+                if (CurrentLoggedInUser.RequirePasswordResetOnNextLogin)
+                {
+                    string request = HttpContext.Request.PathBase.ToString() + "/Identity/Account/Manage/ChangePassword";
+                    return Redirect(request);
+                }
+            }
+
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Privacy()
         {
+            //if, on next login, the user is required to change their password, redirect them directly to the password change page
+            if (User.Identity.IsAuthenticated) // if user logged in
+            {
+                var CurrentLoggedInUser = await _userManager.FindByIdAsync(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+                if (CurrentLoggedInUser.RequirePasswordResetOnNextLogin)
+                {
+                    string request = HttpContext.Request.PathBase.ToString() + "/Identity/Account/Manage/ChangePassword";
+                    return Redirect(request);
+                }
+            }
             return View();
         }
 
