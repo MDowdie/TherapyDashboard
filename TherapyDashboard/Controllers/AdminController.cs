@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace TherapyDashboard.Controllers
 {
+    [Authorize(Policy ="CanEditAccounts")]
     public class AdminController : Controller
     {
         #region toolbox setup
@@ -27,7 +28,6 @@ namespace TherapyDashboard.Controllers
         #endregion
 
         // GET: Admin
-        [Authorize(Roles = RoleType.Admin)]
         public async Task<ActionResult> Index()
         {
             //create a dictionary of all roles a user has. Since in this Therapy Dashboard, a user can have a max of one role, the array of roles returned is reduced to null (if empty array) or a single element as a dictionary value. Key is user id.
@@ -51,12 +51,11 @@ namespace TherapyDashboard.Controllers
         /// <summary>
         /// Assigns a role to a given user, based on id. Creates the role if it doesn't already have an entry in the database. Removes any other role that user has before applying new one, if there's a change.
         /// 
-        /// Note that role changes don't apply to a user until the next time they log in. They keep their previous permissions for so long as they are currently logged in, whether as Admin or as Intern, until they reset things server-side.
+        /// Note that there may be up to a 30-minute delay on any role permission changes, unless the user logs out and logs back in. This is how often .NET Core 2 Identity's default value for Startup > services.Configure<IdentityOptions> > options.SecurityStampValidationInterval lasts: https://stackoverflow.com/questions/40716750/how-to-sign-out-a-user-in-asp-net-core-identity
         /// </summary>
         /// <param name="id">The given user's ID string.</param>
         /// <param name="role">The name of the role. Strongly recommend using RoleType.NameOfRole in order to prevent typos adding extra roles.</param>
         /// <returns>Sends user to homeurl/Admin/Index, as though refresh.</returns>
-        [Authorize(Roles = RoleType.Admin)]
         public async Task<ActionResult> AssignRole(string id, string role)
         {
             var CurrentUser = await _userManager.FindByIdAsync(id);

@@ -50,17 +50,11 @@
                     @ViewBag.UserRole[item.Id]
                 </td>
                 <td>
-
-
-                    @Html.DropDownList("Sortby", new SelectListItem[]
-               {
-                   
-               })    
                     
                     <div class="btn-group">
                         <button class="btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Assign Role</button>
                         <div class="dropdown-menu">
-                            @foreach (var role in TherapyDashboard.Areas.Identity.Data.RoleType.ToArray) {
+                            @foreach (var role in TherapyDashboard.Areas.Identity.Data.Roles.ToArray) {
                                 <a class="dropdown-item" href="/Admin/AssignRole/@item.Id?role=@role">@role</a>
                             }
                         </div>

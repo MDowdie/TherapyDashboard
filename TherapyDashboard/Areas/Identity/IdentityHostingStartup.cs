@@ -23,6 +23,15 @@ namespace TherapyDashboard.Areas.Identity
                 services.AddDefaultIdentity<TherapyDashboardUser>()
                     .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<TherapyDashboardContext>();
+
+                services.AddAuthorization(options =>
+                {
+                    options.AddPolicy("AnyValidUser", policy => policy.RequireRole(Roles.Valid));
+                    options.AddPolicy("CanEditAccounts", policy => policy.RequireRole(Roles.CanEditAccounts));
+                    options.AddPolicy("CanModifyAssessments", policy => policy.RequireRole(Roles.CanModifyAssessmentsAndQuestions));
+                    options.AddPolicy("CanConductAssessments", policy => policy.RequireRole(Roles.CanConductAssessments));
+                    options.AddPolicy("CanGenerateReports", policy => policy.RequireRole(Roles.CanGenerateReports));
+                });
             });
         }
     }
