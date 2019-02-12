@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace TherapyDashboard.Controllers
 {
-    //[Authorize(Policy ="CanEditAccounts")]
+    [Authorize(Policy ="CanEditAccounts")]
     public class AdminController : Controller
     {
         #region toolbox setup

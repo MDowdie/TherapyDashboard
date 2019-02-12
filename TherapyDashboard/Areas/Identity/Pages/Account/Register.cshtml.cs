@@ -13,7 +13,7 @@ using TherapyDashboard.Areas.Identity.Data;
 
 namespace TherapyDashboard.Areas.Identity.Pages.Account
 {
-    [AllowAnonymous]
+    [Authorize(Policy ="CanEditAccounts")]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<TherapyDashboardUser> _signInManager;
