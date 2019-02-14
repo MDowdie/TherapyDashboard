@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TherapyDashboard.Areas.Identity.Data;
@@ -11,7 +12,7 @@ using TherapyDashboard.Models;
 
 namespace TherapyDashboard.Controllers
 {
-    
+    [Authorize(Policy="AnyValidUser")]
     public class HomeController : Controller
     {
         public readonly UserManager<TherapyDashboardUser> _userManager;

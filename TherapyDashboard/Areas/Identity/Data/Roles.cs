@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,14 @@ namespace TherapyDashboard.Areas.Identity.Data
 
         // lists of roles used in many, MANY different locations across the project. hard-coded, I know. must be kept up-to-date.
         public static string[] ToArray = { "Admin", "Counselor", "Intern", "I.T.", "Lockout" }; // used in Views to get list of possible roles in foreach scenarios; must be kept up-to-date
+        public static List<SelectListItem> ToSelectListItems = new List<SelectListItem>
+        {
+            new SelectListItem {Value = Admin, Text = Admin},
+            new SelectListItem {Value = Counselor, Text = Counselor},
+            new SelectListItem {Value = Intern, Text = Intern},
+            new SelectListItem {Value = IT, Text = IT},
+            new SelectListItem {Value = Lockout, Text = Lockout},
+        };
 
         // arrays for policies. names of policy are same as name of variable at time of writing, but hardcoded strings elsewhere.
         public static string[] AnyValidUser = { "Admin", "Counselor", "Intern", "I.T."}; // A list of all arrays, but does not include Lockout. Is used in IdentityHostingStartup to recognize all roles allowed on the site. If someone's been set to Lockout or Pending, they'll be able to log in, but be unable to do anything. Must be kept up-to-date.
@@ -30,6 +39,9 @@ namespace TherapyDashboard.Areas.Identity.Data
         public static string[] CanModifyAssessmentsAndQuestions = { "Admin", "Counselor" };
         public static string[] CanConductAssessments = { "Admin", "Counselor", "Intern" };
         public static string[] CanGenerateReports = { "Admin", "Counselor" };
+
+
+
     }
 
     /*

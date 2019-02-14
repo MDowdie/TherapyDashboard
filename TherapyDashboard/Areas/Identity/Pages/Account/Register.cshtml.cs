@@ -20,17 +20,20 @@ namespace TherapyDashboard.Areas.Identity.Pages.Account
         private readonly UserManager<TherapyDashboardUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public RegisterModel(
             UserManager<TherapyDashboardUser> userManager,
             SignInManager<TherapyDashboardUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _roleManager = roleManager;
         }
 
         [BindProperty]
@@ -55,11 +58,27 @@ namespace TherapyDashboard.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Assigned Role")]
+            public string Role { get; set; }
         }
 
         public void OnGet(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
+            
+        }
+
+        public async Task CreateRoleIfDoesNotExist(string role)
+        {
+            bool role_does_exist = await _roleManager.RoleExistsAsync(role);
+            if (!role_does_exist)
+            {
+                IdentityRole _Role = new IdentityRole(role);
+                var asdf = await _roleManager.CreateAsync(_Role);
+            }
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -67,8 +86,10 @@ namespace TherapyDashboard.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new TherapyDashboardUser { UserName = Input.Email, Email = Input.Email, RequirePasswordResetOnNextLogin = false };
-                var result = await _userManager.CreateAsync(user, Input.Password);
+                var user = new TherapyDashboardUser { UserName = Input.Email, Email = Input.Email, RequirePasswordResetOnNextLogin = true };
+                var x = await _userManager.CreateAsync(user, Input.Password);
+                await CreateRoleIfDoesNotExist(Input.Role);
+                var result = await _userManager.AddToRoleAsync(user, Input.Role);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
