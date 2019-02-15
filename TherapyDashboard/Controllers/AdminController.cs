@@ -41,7 +41,12 @@ namespace TherapyDashboard.Controllers
                 if (x.Count == 0)
                 {
                     UserRole.Add(user.Id, null);
-                } else
+                } else if(x.Contains(RoleType.Pending))
+                {
+                    
+                    UserRole.Add(user.Id, x.First() + " (" + x.Last() + ")"); // result: "Admin (Pending)" or "Pending (Admin)". It shouldn't be possible for there to be more than 2 roles per account-- an actual role, and Pending.
+                }
+                else
                 {
                     UserRole.Add(user.Id, x.First());
                 }
@@ -147,12 +152,17 @@ namespace TherapyDashboard.Controllers
         }
 
         // GET: Admin/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
-            return View();
+            var UserInQuestion = await _userManager.FindByIdAsync(id);
+            if (await _userManager.IsInRoleAsync(UserInQuestion, RoleType.Pending))
+            {
+                IdentityResult x = await _userManager.DeleteAsync(UserInQuestion);
+            }
+            return RedirectToAction(nameof(Index));
         }
 
-        // POST: Admin/Delete/5
+        /* POST: Admin/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
@@ -167,7 +177,7 @@ namespace TherapyDashboard.Controllers
             {
                 return View();
             }
-        }
+        } */
     }
     #endregion
 }

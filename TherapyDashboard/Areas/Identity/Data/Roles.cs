@@ -20,11 +20,11 @@ namespace TherapyDashboard.Areas.Identity.Data
         public const string Intern = "Intern";
         public const string IT = "I.T.";
         public const string Lockout = "Lockout"; // user no longer employed with therapy institution, prevents user from accessing anything but leaves their current name/records on site intact
-        //public const string Pending = "Pending";
+        public const string Pending = "Pending";
 
         // lists of roles used in many, MANY different locations across the project. hard-coded, I know. must be kept up-to-date.
         public static string[] ToArray = { "Admin", "Counselor", "Intern", "I.T.", "Lockout" }; // used in Views to get list of possible roles in foreach scenarios; must be kept up-to-date
-        public static List<SelectListItem> ToSelectListItems = new List<SelectListItem>
+        public static List<SelectListItem> ToSelectListItems = new List<SelectListItem> // notably, this list and the above array doesn't include Pending. This is because Pending isn't a role that an admin should be able to assign/remove from a user, and this particular list is used ONLY for assigning roles to users.
         {
             new SelectListItem {Value = Admin, Text = Admin},
             new SelectListItem {Value = Counselor, Text = Counselor},

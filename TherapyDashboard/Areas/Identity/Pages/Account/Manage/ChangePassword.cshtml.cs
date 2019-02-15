@@ -93,6 +93,7 @@ namespace TherapyDashboard.Areas.Identity.Pages.Account.Manage
 
             user.RequirePasswordResetOnNextLogin = false; // set changes if this little show was required by an admin
             var result = await _userManager.UpdateAsync(user); // implement changes
+            var result2 = await _userManager.RemoveFromRoleAsync(user, RoleType.Pending);
 
             await _signInManager.RefreshSignInAsync(user);
             _logger.LogInformation("User changed their password successfully.");
