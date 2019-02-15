@@ -74,12 +74,24 @@ namespace TherapyDashboard.Controllers
                 var asdf = await _roleManager.CreateAsync(_Role);
             }
 
+            var currentRoles = await _userManager.GetRolesAsync(CurrentUser);
+            bool IsPending = false;
+            if (currentRoles.Contains(RoleType.Pending))
+            {
+                IsPending = true;
+            }
+
             //remove other roles before applying new one
             var fdsa = await _userManager.RemoveFromRolesAsync(CurrentUser, await _userManager.GetRolesAsync(CurrentUser));
 
+            List<string> rolesToBeAdded = new List<string> { role };
+            if (IsPending)
+            {
+                rolesToBeAdded.Add(RoleType.Pending);
+            }
 
             //apply new role
-            var x = await _userManager.AddToRoleAsync(await _userManager.FindByIdAsync(id), role);
+            var x = await _userManager.AddToRolesAsync(await _userManager.FindByIdAsync(id), rolesToBeAdded);
             return RedirectToAction(nameof(Index));
         }
 

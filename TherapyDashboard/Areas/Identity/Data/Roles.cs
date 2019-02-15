@@ -40,9 +40,38 @@ namespace TherapyDashboard.Areas.Identity.Data
         public static string[] CanConductAssessments = { "Admin", "Counselor", "Intern" };
         public static string[] CanGenerateReports = { "Admin", "Counselor" };
 
+        public static void SeedInitialUsers(UserManager<TherapyDashboardUser> _userManager)
+        {
+            if (_userManager.FindByNameAsync("admin").Result == null)
+            {
+                TherapyDashboardUser initialAdmin = new TherapyDashboardUser();
+                initialAdmin.UserName = "admin";
+                IdentityResult result = _userManager.CreateAsync(initialAdmin, "asdfASDF1234!@#$").Result;
 
+                if (result.Succeeded)
+                {
+                    _userManager.AddToRoleAsync(initialAdmin, RoleType.Admin).Wait();
+                }
+            }
+
+            if (_userManager.FindByNameAsync("superuser").Result == null)
+            {
+                TherapyDashboardUser initialIT = new TherapyDashboardUser();
+                initialIT.UserName = "superuser";
+                IdentityResult result = _userManager.CreateAsync(initialIT, "asdfASDF1234!@#$").Result;
+
+                if (result.Succeeded)
+                {
+                    _userManager.AddToRoleAsync(initialIT, RoleType.IT).Wait();
+                }
+            }
+        }
 
     }
+
+
+    
+
 
     /*
      * Here's the code to be added to the start of any controller's View() methods to redirect to the Change Password field if the user's required to get around to that.

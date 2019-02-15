@@ -23,10 +23,12 @@ namespace TherapyDashboard.Controllers
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            RoleType.SeedInitialUsers(_userManager);
         }
 
         public async Task<IActionResult> Index()
         {
+            
             //if, on next login, the user is required to change their password, redirect them directly to the password change page
             if (User.Identity.IsAuthenticated) // if user logged in
             {
@@ -37,7 +39,6 @@ namespace TherapyDashboard.Controllers
                     return Redirect(request);
                 }
             }
-
             return View();
         }
 

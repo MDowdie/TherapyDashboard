@@ -18,11 +18,14 @@ namespace TherapyDashboard.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<TherapyDashboardUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly UserManager<TherapyDashboardUser> _userManager;
 
-        public LoginModel(SignInManager<TherapyDashboardUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<TherapyDashboardUser> signInManager, ILogger<LoginModel> logger, UserManager<TherapyDashboardUser> userManager)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _userManager = userManager;
+            RoleType.SeedInitialUsers(_userManager);
         }
 
         [BindProperty]
