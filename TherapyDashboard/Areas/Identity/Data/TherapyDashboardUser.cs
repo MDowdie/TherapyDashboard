@@ -15,6 +15,8 @@ namespace TherapyDashboard.Areas.Identity.Data
         [PersonalData]
         public string LastName { get; set; }
 
+        public string FirstTimePassword { get; set; }
+
 
         public bool RequirePasswordResetOnNextLogin { get; set; }
     }

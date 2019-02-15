@@ -17,9 +17,6 @@
                     @Html.DisplayNameFor(model => model.UserName)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.FirstName)
                 </th>
                 <th>
@@ -41,9 +38,6 @@
                     @Html.DisplayFor(modelItem => item.UserName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.FirstName)
                 </td>
                 <td>
@@ -52,7 +46,16 @@
                 <td>
                     @ViewBag.UserRole[item.Id]
                 </td>
-                <th><a asp-action="RequirePasswordResetOnNextLogin" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.RequirePasswordResetOnNextLogin)</a></th>
+                <td>
+                    @if (item.FirstTimePassword != null)
+                    {
+                        @item.FirstTimePassword
+                    }
+                    else
+                    {
+                        <a asp-action="RequirePasswordResetOnNextLogin" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.RequirePasswordResetOnNextLogin)</a>
+                    }
+                </td>
                 <td>
                     
                     <div class="btn-group">

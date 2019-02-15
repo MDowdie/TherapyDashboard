@@ -92,6 +92,7 @@ namespace TherapyDashboard.Areas.Identity.Pages.Account.Manage
             }
 
             user.RequirePasswordResetOnNextLogin = false; // set changes if this little show was required by an admin
+            user.FirstTimePassword = null;
             var result = await _userManager.UpdateAsync(user); // implement changes
             var result2 = await _userManager.RemoveFromRoleAsync(user, RoleType.Pending);
 

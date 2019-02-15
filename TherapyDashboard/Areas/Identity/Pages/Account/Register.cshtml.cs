@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -43,6 +44,7 @@ namespace TherapyDashboard.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+            /*
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -58,6 +60,24 @@ namespace TherapyDashboard.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+            */
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name ="Username")]
+            public string Username { get; set; }
+
 
             [Required]
             [DataType(DataType.Text)]
@@ -81,20 +101,78 @@ namespace TherapyDashboard.Areas.Identity.Pages.Account
             }
         }
 
+        /// <summary>
+        /// Generates a Random Password
+        /// respecting the given strength requirements.
+        /// </summary>
+        /// <param name="opts">A valid PasswordOptions object
+        /// containing the password strength requirements.</param>
+        /// <returns>A random password</returns>
+        /// via https://stackoverflow.com/questions/28480167/asp-net-identity-generate-random-password
+        public string GenerateRandomPassword(PasswordOptions opts = null)
+        {
+            if (opts == null) opts = new PasswordOptions()
+            {
+                RequiredLength = 8,
+                RequiredUniqueChars = 4,
+                RequireDigit = true,
+                RequireLowercase = true,
+                RequireNonAlphanumeric = true,
+                RequireUppercase = true
+            };
+
+            string[] randomChars = new[] {
+            "ABCDEFGHJKLMNOPQRSTUVWXYZ",    // uppercase 
+            "abcdefghijkmnopqrstuvwxyz",    // lowercase
+            "0123456789",                   // digits
+            "!@$?_-"                        // non-alphanumeric
+        };
+
+            Random rand = new Random(Environment.TickCount);
+            List<char> chars = new List<char>();
+
+            if (opts.RequireUppercase)
+                chars.Insert(rand.Next(0, chars.Count),
+                    randomChars[0][rand.Next(0, randomChars[0].Length)]);
+
+            if (opts.RequireLowercase)
+                chars.Insert(rand.Next(0, chars.Count),
+                    randomChars[1][rand.Next(0, randomChars[1].Length)]);
+
+            if (opts.RequireDigit)
+                chars.Insert(rand.Next(0, chars.Count),
+                    randomChars[2][rand.Next(0, randomChars[2].Length)]);
+
+            if (opts.RequireNonAlphanumeric)
+                chars.Insert(rand.Next(0, chars.Count),
+                    randomChars[3][rand.Next(0, randomChars[3].Length)]);
+
+            for (int i = chars.Count; i < opts.RequiredLength
+                || chars.Distinct().Count() < opts.RequiredUniqueChars; i++)
+            {
+                string rcs = randomChars[rand.Next(0, randomChars.Length)];
+                chars.Insert(rand.Next(0, chars.Count),
+                    rcs[rand.Next(0, rcs.Length)]);
+            }
+
+            return new string(chars.ToArray());
+        }
+
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/Admin");
             if (ModelState.IsValid)
             {
-                var user = new TherapyDashboardUser { UserName = Input.Email, Email = Input.Email, RequirePasswordResetOnNextLogin = true };
-                var x = await _userManager.CreateAsync(user, Input.Password);
+                var temporaryPassword = GenerateRandomPassword();
+                var user = new TherapyDashboardUser { UserName = Input.Username, FirstName = Input.FirstName, LastName = Input.LastName, RequirePasswordResetOnNextLogin = true, FirstTimePassword = temporaryPassword };
+                var x = await _userManager.CreateAsync(user, temporaryPassword);
                 await CreateRoleIfDoesNotExist(Input.Role);
                 await CreateRoleIfDoesNotExist(RoleType.Pending);
                 List<string> listOfRolesOfNewUser = new List<string>{ Input.Role, RoleType.Pending };
                 var result = await _userManager.AddToRolesAsync(user, listOfRolesOfNewUser);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    _logger.LogInformation("User created a new account.");
 
                     //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     /*var callbackUrl = Url.Page(
