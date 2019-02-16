@@ -1,8 +1,27 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@using TherapyDashboard.Areas.Identity.Data
+@{
     ViewData["Title"] = "Home Page";
 }
+@inject SignInManager<TherapyDashboardUser> SignInManager
+@inject UserManager<TherapyDashboardUser> UserManager
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+<div class="list-group">
+    @if (User.IsInRole(RoleType.Admin) || User.IsInRole(RoleType.IT))
+    {
+        <a asp-controller="Admin" asp-action="Index" class="list-group-item list-group-item-action">Manage Accounts</a>
+    }
+    @if (User.IsInRole(RoleType.Admin) || User.IsInRole(RoleType.Counselor) || User.IsInRole(RoleType.Intern))
+    {
+        <a href="#" class="list-group-item list-group-item-action">Conduct Assessment</a>
+        <a href="#" class="list-group-item list-group-item-action">View Clients</a>
+    }
+    @if (User.IsInRole(RoleType.Admin) || User.IsInRole(RoleType.Counselor))
+    {
+        <a href="#" class="list-group-item list-group-item-action">Generate Reports</a>
+    }
+</div>
+
