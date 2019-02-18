@@ -104,12 +104,13 @@ namespace TherapyDashboard.Controllers
         // POST: Client/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Details(string id, [Bind("Id,RelationshipStatus,DateOfBirth")] Client client)
+        public async Task<ActionResult> Details(string id, [Bind("Id,Race,Ethnicity,Gender,RelationshipStatus,PartnerGender,DateOfBirth")] Client client)
         {
             /*if (id != client.Id)
             {
                 return NotFound();
-            }*/ // they're allowed to update the client's recorded ID number.
+            }*/ // this is commented out because users are allowed to update the client's recorded ID number.
+
 
             if (ModelState.IsValid)
             {
@@ -129,7 +130,7 @@ namespace TherapyDashboard.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return View(client);
             }
             return View(client);
         }
