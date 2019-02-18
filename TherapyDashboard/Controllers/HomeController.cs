@@ -17,13 +17,15 @@ namespace TherapyDashboard.Controllers
     {
         public readonly UserManager<TherapyDashboardUser> _userManager;
         public readonly SignInManager<TherapyDashboardUser> _signInManager;
+        public readonly RoleManager<IdentityRole> _roleManager;
         
 
-        public HomeController(UserManager<TherapyDashboardUser> userManager, SignInManager<TherapyDashboardUser> signInManager)
+        public HomeController(UserManager<TherapyDashboardUser> userManager, SignInManager<TherapyDashboardUser> signInManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            RoleType.SeedInitialUsers(_userManager);
+            _roleManager = roleManager;
+            RoleType.SeedInitialUsers(_userManager, _roleManager).Wait();
         }
 
         public async Task<IActionResult> Index()

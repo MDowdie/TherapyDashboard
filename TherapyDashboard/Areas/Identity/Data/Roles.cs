@@ -40,17 +40,38 @@ namespace TherapyDashboard.Areas.Identity.Data
         public static string[] CanConductAssessments = { "Admin", "Counselor", "Intern" };
         public static string[] CanGenerateReports = { "Admin", "Counselor" };
 
-        public static void SeedInitialUsers(UserManager<TherapyDashboardUser> _userManager)
+        public static async Task SeedInitialUsers(UserManager<TherapyDashboardUser> _userManager, RoleManager<IdentityRole> _roleManager)
         {
+            //note about first time setup: experienced a one-time, as of yet unreproduced bug.
+            // all lines run. admin isn't assigned role despite appropriate line running.
+            // bug fixed by manually deleting all existing users and roles and trying again, immediately after first time setup. No change to code.
+            // yeah, I dunno either.
+
+
+            //create role if does not exist
+            bool admin_does_exist = await _roleManager.RoleExistsAsync(RoleType.Admin);
+            if (!admin_does_exist)
+            {
+                IdentityRole _Role = new IdentityRole(RoleType.Admin);
+                var asdf = await _roleManager.CreateAsync(_Role);
+            }
+            bool it_does_exist = await _roleManager.RoleExistsAsync(RoleType.IT);
+            if (!it_does_exist)
+            {
+                IdentityRole _Role = new IdentityRole(RoleType.IT);
+                var asdf = await _roleManager.CreateAsync(_Role);
+            }
+
+
             if (_userManager.FindByNameAsync("admin").Result == null)
             {
                 TherapyDashboardUser initialAdmin = new TherapyDashboardUser();
                 initialAdmin.UserName = "admin";
-                IdentityResult result = _userManager.CreateAsync(initialAdmin, "asdfASDF1234!@#$").Result;
+                IdentityResult result = await _userManager.CreateAsync(initialAdmin, "asdfASDF1234!@#$");
 
                 if (result.Succeeded)
                 {
-                    _userManager.AddToRoleAsync(initialAdmin, RoleType.Admin).Wait();
+                    await _userManager.AddToRoleAsync(initialAdmin, RoleType.Admin);
                 }
             }
 
@@ -58,11 +79,11 @@ namespace TherapyDashboard.Areas.Identity.Data
             {
                 TherapyDashboardUser initialIT = new TherapyDashboardUser();
                 initialIT.UserName = "superuser";
-                IdentityResult result = _userManager.CreateAsync(initialIT, "asdfASDF1234!@#$").Result;
+                IdentityResult result = await _userManager.CreateAsync(initialIT, "asdfASDF1234!@#$");
 
                 if (result.Succeeded)
                 {
-                    _userManager.AddToRoleAsync(initialIT, RoleType.IT).Wait();
+                    await _userManager.AddToRoleAsync(initialIT, RoleType.IT);
                 }
             }
         }
