@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using TherapyDashboard.Areas.Identity.Data;
+using TherapyDashboard.Models.Database;
 
 namespace TherapyDashboard.Models
 {
@@ -15,6 +16,12 @@ namespace TherapyDashboard.Models
             : base(options)
         {
         }
+
+        public DbSet<Assessment> Assessments { get; set; }
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<Enrollment> Enrollments { get; set; }
+        public DbSet<Answer> Answers { get; set; }
+        public DbSet<AssessmentEdit> AssessmentEdits { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

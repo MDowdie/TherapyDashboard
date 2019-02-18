@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TherapyDashboard.Models;
 
 namespace TherapyDashboard.Migrations
 {
     [DbContext(typeof(TherapyDashboardContext))]
-    partial class TherapyDashboardContextModelSnapshot : ModelSnapshot
+    [Migration("20190217000336_ComplexDataModel")]
+    partial class ComplexDataModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -272,19 +274,29 @@ namespace TherapyDashboard.Migrations
 
                     b.Property<DateTime>("DateOfBirth");
 
-                    b.Property<string>("Ethnicity");
+                    b.Property<int>("PartnerGenderId");
 
-                    b.Property<string>("Gender");
-
-                    b.Property<string>("PartnerGender");
-
-                    b.Property<string>("Race");
-
-                    b.Property<string>("RelationshipStatus");
+                    b.Property<string>("RelationshipStatus")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PartnerGenderId");
+
                     b.ToTable("Clients");
+                });
+
+            modelBuilder.Entity("TherapyDashboard.Models.Database.ClientTag", b =>
+                {
+                    b.Property<string>("ClientId");
+
+                    b.Property<int>("TagId");
+
+                    b.HasKey("ClientId", "TagId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("ClientTags");
                 });
 
             modelBuilder.Entity("TherapyDashboard.Models.Database.Enrollment", b =>
@@ -302,6 +314,21 @@ namespace TherapyDashboard.Migrations
                     b.HasIndex("ClientId");
 
                     b.ToTable("Enrollments");
+                });
+
+            modelBuilder.Entity("TherapyDashboard.Models.Database.Tag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("TagType");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -374,6 +401,27 @@ namespace TherapyDashboard.Migrations
                         .WithMany("Edits")
                         .HasForeignKey("AssessmentId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("TherapyDashboard.Models.Database.Client", b =>
+                {
+                    b.HasOne("TherapyDashboard.Models.Database.Tag", "PartnerGender")
+                        .WithMany()
+                        .HasForeignKey("PartnerGenderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("TherapyDashboard.Models.Database.ClientTag", b =>
+                {
+                    b.HasOne("TherapyDashboard.Models.Database.Client", "Client")
+                        .WithMany("ClientTag")
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("TherapyDashboard.Models.Database.Tag", "Tag")
+                        .WithMany("ClientTag")
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("TherapyDashboard.Models.Database.Enrollment", b =>

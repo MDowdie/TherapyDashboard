@@ -1,0 +1,76 @@
+﻿@model TherapyDashboard.Models.Database.Client
+@{
+    ViewData["Title"] = Model.Id + " Details";
+}
+
+<h1>Client @Model.Id</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Details">
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <!-- Race tag dropdown -->
+                <div class="btn-group">
+                    <button class="btn btn-secondary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Model.Race</button>
+                    <div class="dropdown-menu">
+                        @foreach (string race in TherapyDashboard.Models.Database.Demographics.Race)
+                        {
+                            <a class="dropdown-item" href="/Clients/AssignRace?ClientId=@Model.Id&race=@race">@race</a>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <!-- Ethnicity tag dropdown -->
+                <div class="btn-group">
+                    <button class="btn btn-secondary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Model.Ethnicity</button>
+                    <div class="dropdown-menu">
+                        @foreach (string ethnicity in TherapyDashboard.Models.Database.Demographics.Ethnicity)
+                        {
+                            <a class="dropdown-item" href="/Clients/AssignEthnicity?ClientId=@Model.Id&ethnicity=@ethnicity">@ethnicity</a>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <!-- Gender tag dropdown -->
+                <div class="btn-group">
+                    <button class="btn btn-secondary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@Model.Gender</button>
+                    <div class="dropdown-menu">
+                        @foreach (string gender in TherapyDashboard.Models.Database.Demographics.Gender)
+                        {
+                            <a class="dropdown-item" href="/Clients/AssignEthnicity?ClientId=@Model.Id&gender=@gender">@gender</a>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <!-- TODO: change to dropdown -->
+                <label asp-for="RelationshipStatus" class="control-label"></label>
+                <input asp-for="RelationshipStatus" class="form-control" />
+                <span asp-validation-for="RelationshipStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfBirth" class="control-label"></label>
+                <input asp-for="DateOfBirth" class="form-control" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to Client Search</a>
+</div>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
