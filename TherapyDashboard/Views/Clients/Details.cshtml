@@ -1,4 +1,5 @@
 ﻿@model TherapyDashboard.Models.Database.Client
+@using TherapyDashboard.Areas.Identity.Data
 @{
     ViewData["Title"] = Model.Id + " Details";
 }
@@ -13,6 +14,38 @@
                 <input asp-for="Id" class="form-control" />
                 <span asp-validation-for="Id" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <div class="btn-group">
+                    <button class="btn btn-secondary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Enroll in Program</button>
+                    <div class="dropdown-menu">
+                        @foreach (var program in TherapyDashboard.Models.Database.EnrollmentHelper.Options)
+                        {
+                            <a class="dropdown-item" href="/Clients/EnrollInProgram?id=@Model.Id&program=@program.Text">@program.Text</a>
+                        }
+                    </div>
+                </div>
+            </div>
+            @if (Model.Enrollments != null)
+            {
+                @foreach (var enrollment in Model.Enrollments)
+                {
+                    @if (enrollment.End.Ticks == 0)
+                    {
+                        <div class="form-group">
+                            <div class="btn-group">
+                                <button class="btn btn-secondary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@enrollment.ParticipatingIn (@enrollment.Start)</button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="/Clients/EndEnrollment?id=@enrollment.Id&client=@Model.Id">End</a>
+                                    @if (enrollment.Assessments == null)
+                                    {
+                                        <a class="dropdown-item" href="/Clients/DeleteEnrollment?id=@enrollment.Id&client=@Model.Id">Delete</a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            }
             <div class="form-group">
                 <!-- Race tag dropdown -->
                 <label asp-for="Race" class="control-label"></label>
@@ -44,6 +77,10 @@
             <div class="form-group">
                 <input type="submit" value="Update" class="btn btn-primary" />
             </div>
+            @if (User.IsInRole(RoleType.Admin))
+                {
+            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete Client</a>
+               }
         </form>
     </div>
 </div>

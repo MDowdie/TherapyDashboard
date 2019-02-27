@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +31,12 @@ namespace TherapyDashboard.Controllers
         // GET: Client/Details/5
         public async Task<ActionResult> Details(string id)
         {
-            Client client = await _context.Clients.FindAsync(id);
+            //Client client = await _context.Clients.FindAsync(id);
+
+            Client client = _context.Clients.Single(c => c.Id == id);
+            _context.Entry(client).Collection(c => c.Enrollments).Load();
+
+
             return View(client);
         }
 
@@ -101,6 +107,71 @@ namespace TherapyDashboard.Controllers
             return Redirect(outputurl);
         }
 
+        public ActionResult EnrollInProgram(string id, string program)
+        {
+            Client ClientInQuestion = _context.Clients.Find(id);
+
+            bool enrollmentAlreadyExists = false;
+            if (ClientInQuestion.Enrollments != null)
+            {
+                foreach (var i_enroll in ClientInQuestion.Enrollments)
+                {
+                    if (i_enroll.ParticipatingIn == program)
+                    {
+                        enrollmentAlreadyExists = true;
+                        break;
+                    }
+                }
+            }
+            if (!enrollmentAlreadyExists)
+            {
+                Enrollment enrollment = new Enrollment();
+                enrollment.ParticipatingIn = program;
+                enrollment.Client = ClientInQuestion;
+                enrollment.Start = DateTime.Today;
+
+                _context.Enrollments.Add(enrollment);
+                ClientInQuestion.Enrollments.Add(enrollment);
+
+                _context.SaveChanges();
+            }
+            string outputurl = "~/Clients/Details/" + id;
+            return Redirect(outputurl);
+        }
+
+        public ActionResult DeleteEnrollment(int id, string client)
+        {
+            Enrollment EnrollmentInQuestion = _context.Enrollments.Find(id);
+            Client ClientInQuestion = _context.Clients.Find(client);
+            if (EnrollmentInQuestion != null)
+            {
+                if(EnrollmentInQuestion.Client != null)
+                {
+                    //EnrollmentInQuestion.ClientId = null;
+                    ClientInQuestion.Enrollments.Remove(EnrollmentInQuestion);
+                    //_context.Enrollments.Remove(EnrollmentInQuestion);
+                    _context.SaveChanges();
+                }
+            }
+
+            string outputurl = "~/Clients/Details/" + client;
+            return Redirect(outputurl);
+        }
+
+        public ActionResult EndEnrollment(int id, string client)
+        {
+            Enrollment EnrollmentInQuestion = _context.Enrollments.Find(id);
+            EnrollmentInQuestion.End = DateTime.Today;
+
+            _context.SaveChanges();
+
+
+            string outputurl = "~/Clients/Details/" + client;
+            return Redirect(outputurl);
+        }
+
+
+
         // POST: Client/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -135,26 +206,27 @@ namespace TherapyDashboard.Controllers
             return View(client);
         }
 
-        // GET: Client/Delete/5
-        public ActionResult Delete(string id)
-        {
-            return View();
-        }
-
         // POST: Client/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(string id, IFormCollection collection)
+        [Authorize(Policy = "CanEditAccounts")]
+        public ActionResult Delete(string id)
         {
             try
             {
                 // TODO: Add delete logic here
+                Client ClientInQuestion = _context.Clients.Find(id);
+                _context.Clients.Remove(ClientInQuestion);
+
+
+
 
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                string outputurl = "~/Clients/Details/" + id;
+                return Redirect(outputurl);
             }
         }
 

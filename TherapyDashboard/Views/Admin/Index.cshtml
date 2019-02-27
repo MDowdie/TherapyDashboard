@@ -57,22 +57,23 @@
                     }
                 </td>
                 <td>
-                    
+
                     <div class="btn-group">
                         <button class="btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Assign Role</button>
                         <div class="dropdown-menu">
-                            @foreach (var role in TherapyDashboard.Areas.Identity.Data.RoleType.ToArray) {
+                            @foreach (var role in TherapyDashboard.Areas.Identity.Data.RoleType.ToArray)
+                            {
                                 <a class="dropdown-item" href="/Admin/AssignRole/@item.Id?role=@role">@role</a>
                             }
                         </div>
                     </div>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-                    
+                    <!--<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+        <a asp-action="Details" asp-route-id="@item.Id">Details</a>-->
+
                     @if (ViewBag.UserRole[item.Id].Contains(TherapyDashboard.Areas.Identity.Data.RoleType.Pending) == true)
                     {
-                       @Html.Raw("| ")
-                       <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                     }
 
 

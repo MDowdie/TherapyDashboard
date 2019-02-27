@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TherapyDashboard.Models;
 
 namespace TherapyDashboard.Migrations
 {
     [DbContext(typeof(TherapyDashboardContext))]
-    partial class TherapyDashboardContextModelSnapshot : ModelSnapshot
+    [Migration("20190219203338_DateTimeAssessmentsFix")]
+    partial class DateTimeAssessmentsFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -293,8 +295,6 @@ namespace TherapyDashboard.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ClientForeignKey");
-
                     b.Property<string>("ClientId");
 
                     b.Property<DateTime>("End");
@@ -305,7 +305,7 @@ namespace TherapyDashboard.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClientForeignKey");
+                    b.HasIndex("ClientId");
 
                     b.ToTable("Enrollments");
                 });
@@ -386,7 +386,7 @@ namespace TherapyDashboard.Migrations
                 {
                     b.HasOne("TherapyDashboard.Models.Database.Client", "Client")
                         .WithMany("Enrollments")
-                        .HasForeignKey("ClientForeignKey");
+                        .HasForeignKey("ClientId");
                 });
 #pragma warning restore 612, 618
         }
