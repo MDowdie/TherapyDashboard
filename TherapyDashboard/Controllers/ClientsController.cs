@@ -207,9 +207,7 @@ namespace TherapyDashboard.Controllers
         }
 
         // POST: Client/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Authorize(Policy = "CanEditAccounts")]
+        //[Authorize(Policy = "CanEditAccounts")]
         public ActionResult Delete(string id)
         {
             try
@@ -217,7 +215,7 @@ namespace TherapyDashboard.Controllers
                 // TODO: Add delete logic here
                 Client ClientInQuestion = _context.Clients.Find(id);
                 _context.Clients.Remove(ClientInQuestion);
-
+                _context.SaveChanges();
 
 
 

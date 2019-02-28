@@ -15,7 +15,7 @@ namespace TherapyDashboard.Models.Database
 
         [Required]
         [Display(Name = "Client ID")]
-        public string ClientId { get; set; } // TODO: set as foreign key (client id)
+        public string ClientId { get; set; }
 
         [Required]
         [Display(Name = "Conducted By")]
@@ -63,7 +63,7 @@ namespace TherapyDashboard.Models.Database
 
         [Required]
         [Display(Name = "Edited By")]
-        public string ConductedBy { get; set; } // user who made a change
+        public string ConductedBy { get; set; } // user who made a change (TODO: foreign key, user id)
 
         [Required]
         [DataType(DataType.Date)]
