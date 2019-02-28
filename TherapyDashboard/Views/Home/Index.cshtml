@@ -21,7 +21,7 @@
     }
     @if (User.IsInRole(RoleType.Admin) || User.IsInRole(RoleType.Counselor))
     {
-        <a href="#" class="list-group-item list-group-item-action">Generate Reports</a>
+        <a asp-controller="Reports" asp-action="Index" class="list-group-item list-group-item-action">Generate Reports</a>
     }
 </div>
 
