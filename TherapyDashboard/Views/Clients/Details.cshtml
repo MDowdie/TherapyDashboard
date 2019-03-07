@@ -25,27 +25,7 @@
                     </div>
                 </div>
             </div>
-            @if (Model.Enrollments != null)
-            {
-                @foreach (var enrollment in Model.Enrollments)
-                {
-                    @if (enrollment.End.Ticks == 0)
-                    {
-                        <div class="form-group">
-                            <div class="btn-group">
-                                <button class="btn btn-secondary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@enrollment.ParticipatingIn (@enrollment.Start)</button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/Clients/EndEnrollment?id=@enrollment.Id&client=@Model.Id">End</a>
-                                    @if (enrollment.Assessments == null)
-                                    {
-                                        <a class="dropdown-item" href="/Clients/DeleteEnrollment?id=@enrollment.Id&client=@Model.Id">Delete</a>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    }
-                }
-            }
+            
             <div class="form-group">
                 <!-- Race tag dropdown -->
                 <label asp-for="Race" class="control-label"></label>
@@ -84,11 +64,87 @@
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to Client Search</a>
+<div class="row">
+    <div class="col-md-10">
+        <!-- begin enrollments section -->
+        @if (Model.Enrollments != null)
+        {
+            @foreach (var enrollment in Model.Enrollments)
+            {
+        <div class="form-group">
+            <!-- header text for enrollment-->
+            @if (enrollment.End.Ticks == 0) // if current enrollment has no end date assigned to it (if enrollment is currently active)
+            {
+                <h2>@enrollment.ParticipatingIn (@enrollment.Start.ToString("d") - Current)</h2>
+            }
+            else
+            {
+                <h2>@enrollment.ParticipatingIn (@enrollment.Start.ToString("d")  - @enrollment.End.ToString("d"))</h2>
+            }
+            <!-- dropdown with list of actions for enrollment -->
+            <div class="btn-group">
+                <button class="btn btn-secondary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</button>
+                <div class="dropdown-menu">
+                    @if (enrollment.End.Ticks == 0)
+                    {
+                        <a class="dropdown-item" href="#">Conduct New Assessment</a>
+                        <a class="dropdown-item" href="/Clients/EndEnrollment?id=@enrollment.Id&client=@Model.Id">End</a>
+                    }
+                    @if (enrollment.Assessments == null)
+                    {
+                        <a class="dropdown-item" href="/Clients/DeleteEnrollment?id=@enrollment.Id&client=@Model.Id">Delete</a>
+                    }
+                    @if (enrollment.End.Ticks != 0 && enrollment.Assessments != null)
+                    {
+                        <a class="dropdown-item" href="#">No Actions Available</a>
+                    }
+                </div>
+            </div>
+        </div>
+            <!-- list of all assessments in current program enrollment -->
+            @if (enrollment.Assessments == null)
+            {
+                <h3>No assessments in this program enrollment at this time.</h3>
+            }
+            else
+            {
+                if (enrollment.Assessments.Count == 0)
+                {
+                    <h3>No assessments in this program enrollment at this time.</h3>
+                }
+                else
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Date</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Marked As</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var assessment in enrollment.Assessments.OrderBy(x => x.ConductedOn))
+                            {
+                                <tr>
+                                    <th scope="row">@assessment.ConductedOn</th>
+                                    <th>@assessment.AssessmentType</th>
+                                    <th>@assessment.Tag</th>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            }
+            }
+        }
+        <!-- end enrollments section -->
+    </div>
 </div>
 
-@section Scripts{
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    <div>
+        <a asp-action="Index">Back to Client Search</a>
+    </div>
+
+    @section Scripts{
+        @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

@@ -38,7 +38,6 @@ namespace TherapyDashboard.Models.Database
         [Display(Name = "Score")]
         public int Score { get; set; } // total score from assessment for client
 
-        [Required]
         [Display(Name = "Edits")]
         public List<AssessmentEdit> Edits { get; set; }
 
