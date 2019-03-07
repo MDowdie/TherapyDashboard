@@ -10,8 +10,8 @@ using TherapyDashboard.Models;
 namespace TherapyDashboard.Migrations
 {
     [DbContext(typeof(TherapyDashboardContext))]
-    [Migration("20190208163545_CreateIdentitySchema")]
-    partial class CreateIdentitySchema
+    [Migration("20190307194941_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -150,6 +150,12 @@ namespace TherapyDashboard.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("FirstTimePassword");
+
+                    b.Property<string>("LastName");
+
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
@@ -165,6 +171,8 @@ namespace TherapyDashboard.Migrations
                     b.Property<string>("PhoneNumber");
 
                     b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<bool>("RequirePasswordResetOnNextLogin");
 
                     b.Property<string>("SecurityStamp");
 
@@ -184,6 +192,124 @@ namespace TherapyDashboard.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("TherapyDashboard.Models.Database.Answer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AssessmentEditId");
+
+                    b.Property<int?>("AssessmentId");
+
+                    b.Property<int>("Number");
+
+                    b.Property<int>("Response");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssessmentEditId");
+
+                    b.HasIndex("AssessmentId");
+
+                    b.ToTable("Answers");
+                });
+
+            modelBuilder.Entity("TherapyDashboard.Models.Database.Assessment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AssessmentType");
+
+                    b.Property<string>("ClientId")
+                        .IsRequired();
+
+                    b.Property<string>("ConductedBy")
+                        .IsRequired();
+
+                    b.Property<DateTime>("ConductedOn");
+
+                    b.Property<int>("EnrollmentId");
+
+                    b.Property<int>("Score");
+
+                    b.Property<string>("Tag");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EnrollmentId");
+
+                    b.ToTable("Assessments");
+                });
+
+            modelBuilder.Entity("TherapyDashboard.Models.Database.AssessmentEdit", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AssessmentId");
+
+                    b.Property<string>("ConductedBy")
+                        .IsRequired();
+
+                    b.Property<DateTime>("ConductedOn");
+
+                    b.Property<int>("Score");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssessmentId");
+
+                    b.ToTable("AssessmentEdits");
+                });
+
+            modelBuilder.Entity("TherapyDashboard.Models.Database.Client", b =>
+                {
+                    b.Property<string>("Id");
+
+                    b.Property<DateTime>("DateOfBirth");
+
+                    b.Property<string>("Ethnicity");
+
+                    b.Property<string>("Gender");
+
+                    b.Property<string>("PartnerGender");
+
+                    b.Property<string>("Race");
+
+                    b.Property<string>("RelationshipStatus");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Clients");
+                });
+
+            modelBuilder.Entity("TherapyDashboard.Models.Database.Enrollment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClientForeignKey");
+
+                    b.Property<string>("ClientId");
+
+                    b.Property<DateTime>("End");
+
+                    b.Property<string>("ParticipatingIn");
+
+                    b.Property<DateTime>("Start");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientForeignKey");
+
+                    b.ToTable("Enrollments");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -229,6 +355,40 @@ namespace TherapyDashboard.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("TherapyDashboard.Models.Database.Answer", b =>
+                {
+                    b.HasOne("TherapyDashboard.Models.Database.AssessmentEdit")
+                        .WithMany("ChangedAnswers")
+                        .HasForeignKey("AssessmentEditId");
+
+                    b.HasOne("TherapyDashboard.Models.Database.Assessment")
+                        .WithMany("Answers")
+                        .HasForeignKey("AssessmentId");
+                });
+
+            modelBuilder.Entity("TherapyDashboard.Models.Database.Assessment", b =>
+                {
+                    b.HasOne("TherapyDashboard.Models.Database.Enrollment", "Enrollment")
+                        .WithMany("Assessments")
+                        .HasForeignKey("EnrollmentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("TherapyDashboard.Models.Database.AssessmentEdit", b =>
+                {
+                    b.HasOne("TherapyDashboard.Models.Database.Assessment", "Assessment")
+                        .WithMany("Edits")
+                        .HasForeignKey("AssessmentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("TherapyDashboard.Models.Database.Enrollment", b =>
+                {
+                    b.HasOne("TherapyDashboard.Models.Database.Client", "Client")
+                        .WithMany("Enrollments")
+                        .HasForeignKey("ClientForeignKey");
                 });
 #pragma warning restore 612, 618
         }
