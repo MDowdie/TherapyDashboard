@@ -73,48 +73,51 @@
             {
         <div class="form-group">
             <!-- header text for enrollment-->
-            @if (enrollment.End.Ticks == 0) // if current enrollment has no end date assigned to it (if enrollment is currently active)
-            {
-                <h2>@enrollment.ParticipatingIn (@enrollment.Start.ToString("d") - Current)</h2>
-            }
-            else
-            {
-                <h2>@enrollment.ParticipatingIn (@enrollment.Start.ToString("d")  - @enrollment.End.ToString("d"))</h2>
-            }
-            <!-- dropdown with list of actions for enrollment -->
-            <div class="btn-group">
-                <button class="btn btn-secondary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</button>
-                <div class="dropdown-menu">
-                    @if (enrollment.End.Ticks == 0)
-                    {
-                        <a class="dropdown-item" href="#">Conduct New Assessment</a>
-                        <a class="dropdown-item" href="/Clients/EndEnrollment?id=@enrollment.Id&client=@Model.Id">End</a>
-                    }
-                    @if (enrollment.Assessments == null)
-                    {
-                        <a class="dropdown-item" href="/Clients/DeleteEnrollment?id=@enrollment.Id&client=@Model.Id">Delete</a>
-                    }
-                    @if (enrollment.End.Ticks != 0 && enrollment.Assessments != null)
-                    {
-                        <a class="dropdown-item" href="#">No Actions Available</a>
-                    }
+            <div class="row">
+                @if (enrollment.End.Ticks == 0) // if current enrollment has no end date assigned to it (if enrollment is currently active)
+                {
+                    <span class="h2">@enrollment.ParticipatingIn (@enrollment.Start.ToString("d") - Current)</span>
+                }
+                else
+                {
+                    <span class="h2">@enrollment.ParticipatingIn (@enrollment.Start.ToString("d")  - @enrollment.End.ToString("d"))</span>
+                }
+
+                <!-- dropdown with list of actions for enrollment -->
+                <div class="btn-group-sm">
+                    <button class="btn btn-secondary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</button>
+                    <div class="dropdown-menu">
+                        @if (enrollment.End.Ticks == 0)
+                        {
+                            <a class="dropdown-item" href="#">Conduct New Assessment</a>
+                            <a class="dropdown-item" href="/Clients/EndEnrollment?id=@enrollment.Id&client=@Model.Id">End</a>
+                        }
+                        @if (enrollment.Assessments == null)
+                        {
+                            <a class="dropdown-item" href="/Clients/DeleteEnrollment?id=@enrollment.Id&client=@Model.Id">Delete</a>
+                        }
+                        @if (enrollment.End.Ticks != 0 && enrollment.Assessments != null)
+                        {
+                            <a class="dropdown-item" href="#">No Actions Available</a>
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
+
             <!-- list of all assessments in current program enrollment -->
             @if (enrollment.Assessments == null)
             {
-                <h3>No assessments in this program enrollment at this time.</h3>
+                <small class="h4 text-muted">No assessments in this program enrollment at this time.</small>
             }
             else
             {
                 if (enrollment.Assessments.Count == 0)
                 {
-                    <h3>No assessments in this program enrollment at this time.</h3>
+                    <small class="h4 text-muted">No assessments in this program enrollment at this time.</small>
                 }
                 else
                 {
-                    <table class="table">
+                    <table class="table table-sm">
                         <thead>
                             <tr>
                                 <th scope="col">Date</th>
@@ -135,6 +138,7 @@
                     </table>
                 }
             }
+        </div>
             }
         }
         <!-- end enrollments section -->
