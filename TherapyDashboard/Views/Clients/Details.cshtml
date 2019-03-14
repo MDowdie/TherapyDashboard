@@ -85,27 +85,41 @@
 
                 <!-- dropdown with list of actions for enrollment -->
                 <div class="btn-group">
-                    <button class="btn btn-secondary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</button>
+                    <button style="max-height:75%" class="btn btn-info dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</button>
                     <div class="dropdown-menu">
-                        @if (enrollment.End.Ticks == 0)
+
+                        @if (enrollment.End.Ticks == 0) // if enrollment is ongoing
                         {
+                            <!--Conduct New Assessment section-->
                             <h6 class="dropdown-header">Conduct New Assessment</h6>
                             <a class="dropdown-item" href="#">CFARS</a>
                             <a class="dropdown-item" href="#">PPS-R</a>
                             <a class="dropdown-item" href="#">PCL</a>
                             <div class="dropdown-divider"></div>
+                        }
+
+
+                        @if (enrollment.End.Ticks == 0 || enrollment.Assessments == null) // if enrollment is either ongoing or has no assessments
+                        {
+                            <!--Enrollment Management section-->
                             <h6 class="dropdown-header">Manage Enrollment</h6>
+                        }
+                        @if (enrollment.End.Ticks == 0) // if enrollment is ongoing
+                        {
                             <a class="dropdown-item" href="/Clients/EndEnrollment?id=@enrollment.Id&client=@Model.Id">End Today</a>
                         }
-                        @if (enrollment.Assessments == null)
+                        @if (enrollment.Assessments == null) // if there are no assessments so far
                         {
                             <a class="dropdown-item" href="/Clients/DeleteEnrollment?id=@enrollment.Id&client=@Model.Id">Delete</a>
                         }
+
+
                         @if (enrollment.End.Ticks != 0 && enrollment.Assessments != null)
                         {
+                            <!--No actions available-->
                             <div class="dropdown-menu p-4 text-muted" style="max-width:200px">
                                 <p>
-                                    <em>No actions available.</em>
+                                    No actions available.
                                 </p>
                             </div>
                         }
