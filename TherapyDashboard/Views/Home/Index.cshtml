@@ -16,8 +16,7 @@
     }
     @if (User.IsInRole(RoleType.Admin) || User.IsInRole(RoleType.Counselor) || User.IsInRole(RoleType.Intern))
     {
-        <a href="#" class="list-group-item list-group-item-action">Conduct Assessment</a>
-        <a asp-controller="Clients" asp-action="Index" class="list-group-item list-group-item-action">View Clients</a>
+        <a asp-controller="Clients" asp-action="Index" class="list-group-item list-group-item-action">Find Client</a>
     }
     @if (User.IsInRole(RoleType.Admin) || User.IsInRole(RoleType.Counselor))
     {
