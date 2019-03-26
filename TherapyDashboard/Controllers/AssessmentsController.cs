@@ -12,5 +12,21 @@ namespace TherapyDashboard.Controllers
         {
             return View();
         }
+        public IActionResult CFARS()
+        {
+            return View();
+        }
+
+        public IActionResult PPSR()
+        {
+            return View();
+        }
+
+        public IActionResult PCL()
+        {
+            return View();
+        }
+
+
     }
 }

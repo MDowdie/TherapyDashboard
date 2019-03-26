@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -93,5 +94,42 @@ namespace TherapyDashboard.Models.Database
         [Required]
         [Display(Name = "Response")]
         public int Response { get; set; } // "client's response to question 1" was "6", etc.
+    }
+
+    public static class Templates
+    {
+        public static List<SelectListItem> CFARSList { get; } = new List<SelectListItem>
+        {
+            new SelectListItem{Value="0", Text="NA - Unknown"},
+            new SelectListItem{Value="1", Text="1 - No Problem"},
+            new SelectListItem{Value="2", Text="2 - Less than Slight"},
+            new SelectListItem{Value="3", Text="3 - Slight Problem"},
+            new SelectListItem{Value="4", Text="4 - Slight to Moderate" },
+            new SelectListItem{Value="5", Text="5 - Moderate Problem" },
+            new SelectListItem{Value="6", Text="6 - Moderate to Severe" },
+            new SelectListItem{Value="7", Text="7 - Severe Problem"},
+            new SelectListItem{Value="8", Text="8 - Severe to Extreme" },
+            new SelectListItem{Value="9", Text="9 - Extreme Problem" }
+        };
+
+        public static List<SelectListItem> PPSRList { get; } = new List<SelectListItem>
+        {
+            new SelectListItem{Value="1", Text="1 - Almost Never"},
+            new SelectListItem{Value="2", Text="2" },
+            new SelectListItem{Value="3", Text="3" },
+            new SelectListItem{Value="4", Text="4 - Sometimes True" },
+            new SelectListItem{Value="5", Text="5" },
+            new SelectListItem{Value="6", Text="6" },
+            new SelectListItem{Value="7", Text="7 - Almost Always" }
+        };
+
+        public static List<SelectListItem> PCLList { get; } = new List<SelectListItem>
+        {
+            new SelectListItem{Value="0", Text="0 - Not at All" },
+            new SelectListItem{Value="1", Text="1 - A Little Bit"},
+            new SelectListItem{Value="2", Text="2 - Moderately" },
+            new SelectListItem{Value="3", Text="3 - Quite a Bit" },
+            new SelectListItem{Value="4", Text="4 - Extremely" }
+        };
     }
 }

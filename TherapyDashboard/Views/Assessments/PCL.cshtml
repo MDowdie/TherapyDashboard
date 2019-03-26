@@ -1,0 +1,106 @@
+﻿@model TherapyDashboard.Models.Database.Assessment
+@using TherapyDashboard.Areas.Identity.Data
+@{
+    ViewData["Title"] = "Conduct PPS-R Assessment";
+}
+
+<h1>PTSD Checklist (PCL-5)</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="CreatePCL">
+            <p>Below is a list of problems that people sometimes have in response to a very stressful experience. Please read each problem carefully and then select the number that indicates how much you have been bothered by that problem <u>in the past month</u>.</p>
+            <div class="form-group">
+                <label class="control-label">Repeated, disturbing, and unwanted memories of the stressful experience?</label>
+                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.PCLList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Repeated, disturbing dreams of the stressful experience?</label>
+                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.PCLList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Suddenly feeling or acting as if the stressful experience were actually happening again (as if you were actually back there reliving it)?</label>
+                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.PCLList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Feeling very upset when something reminded you of the stressful experience?</label>
+                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.PCLList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Having strong physical reactions when something reminded you of the stressful experience (for example, heart pounding, trouble breathing, sweating)?</label>
+                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.PCLList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Avoiding memories, thoughts, or feelings related to the stressful experience?</label>
+                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.PCLList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Avoiding external reminders of the stressful experience (for example, people, places, conversations, activities, objects, or situations)?</label>
+                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.PCLList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Trouble remembering important parts of the stressful experience?</label>
+                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.PCLList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Having strong negative beliefs about yourself, other people, or the world (for example, having thoughts such as: I am bad, there is something seriously wrong with me, no one can be trusted, the world is completely dangerous)?</label>
+                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.PCLList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Blaming yourself or someone else for the stressful experience or what happened after it?</label>
+                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.PCLList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Having strong negative feelings such as fear, horror, anger, guilt, or shame?</label>
+                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.PCLList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Loss of interest in activities that you used to enjoy?</label>
+                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.PCLList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Feeling distant or cut off from other people?</label>
+                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.PCLList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Trouble experiencing positive feelings (for example, being unable to feel happiness or have loving feelings for people close to you)?</label>
+                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.PCLList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Irritable behavior, angry outbursts, or acting aggressively?</label>
+                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.PCLList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Taking too many risks or doing things that could cause your harm?</label>
+                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.PCLList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Being "superalert" or watchful or on guard?</label>
+                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.PCLList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Feeling jumpy or easily startled?</label>
+                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.PCLList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Having difficulty concentrating?</label>
+                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.PCLList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Trouble falling or staying asleep?</label>
+                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.PCLList"></select>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
