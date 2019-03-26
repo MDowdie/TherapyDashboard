@@ -47,7 +47,7 @@
             </div>
             @if (User.IsInRole(RoleType.Admin))
                 {
-            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete Client</a>
+                <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete Client</a>
                }
         </form>
     </div>
