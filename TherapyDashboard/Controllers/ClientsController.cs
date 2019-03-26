@@ -13,6 +13,7 @@ using TherapyDashboard.Models.Database;
 
 namespace TherapyDashboard.Controllers
 {
+    [Authorize(Policy = "CanConductAssessments")]
     public class ClientsController : Controller
     {
         private readonly TherapyDashboardContext _context;

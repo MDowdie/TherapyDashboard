@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using TherapyDashboard.Models;
 
 namespace TherapyDashboard.Controllers
 {
+    [Authorize(Policy = "CanGenerateReports")]
     public class ReportsController : Controller
     {
         private readonly IHostingEnvironment _hostingEnvironment;
