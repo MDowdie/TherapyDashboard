@@ -1,4 +1,4 @@
-﻿@model TherapyDashboard.Models.Database.Assessment
+﻿@model TherapyDashboard.Models.Database.CFARSAssessment
 @using TherapyDashboard.Areas.Identity.Data
 @{
     ViewData["Title"] = "Conduct CFARS Assessment";
@@ -14,209 +14,209 @@
             <h2>Hyperactivity</h2>
             <div class="form-group">
                 <label class="control-label">Manic - High level of uncontrolled excitement.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer1"  asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Sleep Deficit - Insufficiency in the frequency, amount or patterning of sleep.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer2" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Pressured Speech - A prolongation of sounds and syllables.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer3" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">ADHD Meds - Taking prescribed medications to treat symptoms of attention deficit/hyperactivity disorder.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer4" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Inattentive - Difficulty in inability to maintain a focus on an activity (cognitive or behavioral) that interferes with learning, retention, or demonstration of needed skills or abilities.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer5" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Overactive/Hyperactive - Excessive movement, animation, e.g., pacing, incessant talking. Fidgetiness or squirming in one's seat. Excessive running, talking.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer6" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Anti-Manic Meds - Taking prescribed medication to treat symptoms of mania.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer7" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Agitated - Moved with violence or sudden force; stirred up; upset.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer8" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Mood Swings - Wide or dramatic shift or swings from elated, euphoric, to depressed, sad.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer9" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Impulsivity - Difficulty or inability to withhold acting or speaking on a thought or idea when that expression could have negative consequences.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer10" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
 
             <h2>Work or School <small>(whichever area the person is having the most difficulty)</small></h2>
             <div class="form-group">
                 <label class="control-label">Absenteeism - Frequent or extended absence from school, work or training program due to approved or unapproved reasons.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer11" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Dropped Out - Child has officially "withdrawn" from school or has quit attending school with no intention of returning.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer12" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Defies Authority - A persistent and frequent pattern of refusing to conform to rules or respond to reasonable and legal requests from persons with lawful supervisory or advisory responsibility.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer13" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Disruptive - Activities or behaviors (in work or school) that prevent others (on the job or in the classroom) from completing or attending to their tasks.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer14" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Poor Performance - Fails to meet the expectations for job/role/school performance.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer15" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Learning Disabilities - Impairment in reception, processing, utilization of information.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer16" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Doesn't Read/Write - Does not read or write at an age appropriate level in any language.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer17" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Not Employed - Not working for compensation.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer18" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Terminated/Expelled - Not allowed to return to school for an undetermined or permanent period of time for a violation of written policy or procedure.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer19" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Tardiness - Has been late to work or school.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer20" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Suspended - Temporary removal from regular classes for a predetermined period (to be decided by the school) for violation of written school policy or procedure. This may include "in-school" suspension or "out-of-school" suspension.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer21" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Skips Class - Absences from class(es) or school not due to illness, medical appointments or other excusable reasons.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer22" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
 
             <h2>Interpersonal Relationships</h2>
             <div class="form-group">
                 <label class="control-label">Problems with Friends - An interpersonal problem involving those other than close family members.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer23" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Poor Social Skills - Lack or difficulty in mastering dress, presentation, manners, verbal, expression; factors associated with successful interaction with others.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer24" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Overly Shy - Characterized by being timid, bashful or shy to a point that it causes problems.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer25" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Difficulty Establishing and/or Maintaining Relationships - Has difficulty making and/or keeping desirable friends, developing close relationships, or is so unselective in making friends that the person is taken advantage.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer26" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
 
             <h2>Cognitive Performance</h2>
             <div class="form-group">
                 <label class="control-label">Poor Memory - Has a loss of recent or remote memory, forgetfulness.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer27" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Poor Attention/Concentration - Limited ability to focus on current task(s) or issues, difficulty concentrating or focusing attention.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer28" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Impaired Judgment - Inability to adequately assess the impact of one's actions. Difficulty in self-monitoring.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer29" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Low Self-Awareness - Based on what would be expected for the person's age and/or subculture the person is not cognizant of one's effect on other people; not conscious of one's own self; can't differentiate from other people or things.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer30" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Developmental Disability - Difficulty in conceptualizing, understanding, or limited intellectual capacity (IQ).</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer31" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Concrete Thinking - Difficulty with abstraction, often simplistic thinking that misses nuance of words or phrases.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer32" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Slow Processing - Limited ability in speed of processing or comprehending information.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer33" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
 
             <h2>Behavior in "Home" Setting</h2>
             <div class="form-group">
                 <label class="control-label">Disregards Rules - The person does not consider ordinary "house" rules as personally applicable, ignores rules or fails to comply with rules (e.g., breaks set curfew).</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer34" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Conflict with Sibling or Peer - An interpersonal problem, controversy or disagreement involving the child/youth and a sibling or a child of similar age and development.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer35" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Conflict with Relative - An interpersonal problem, controversy or disagreement winvolving the child/youth and a member of their family (i.e., uncle, grandmother).</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer36" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Defies Authority - A persistent and frequent pattern of refusing to conform to rules or respond to reasonable requests from parents or caregiver.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer37" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Conflict with Parent or Caregiver - An interpersonal problem, controversy or disagreement involving the child/youth and one or both of the child's parents, foster parents, grandparents with parental custody, or other individual(s) who provide daily for the support and monitoring of the child.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer38" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
 
             <h2>Danger to Others</h2>
             <div class="form-group">
                 <label class="control-label">Violent Temper - Exhibits extreme emotional or physical force; vehement feeling or expression.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer39" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Causes Serious Injuries - The child/youth has caused injuries which require medical attention.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer40" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Use of Weapons - The child/youth has utilized weapons or other instruments as a weapon during aggressive behavior or while threatening others.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer41" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Assaultive - Violently, physically or verbally attacks another/others.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer42" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Cruelty to Animals - Physical attacks on animals ranging from persistent teasing to torture, harming, maiming, or killing animals (e.g., setting fire to animals).</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer43" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Threatens Others - Person expresses the intention of hurting or injuring another person or persons.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer44" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Homicidal Ideation - Person forms ideas or thoughts of killing another person or persons.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer45" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Homicidal Attempt - Child/Youth has tried to kill another person or persons.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer46" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Accused of Sexual Assault - Verbal or written report, as self-report or third party that the child/youth committed a sexual assault in the last 3 weeks, e.g., touching the genitals of others or using coercion (physical force or threats) to make such contact.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer47" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Physically Aggressive - Inclined to behave in an overly aggressive manner; actively hostile.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer48" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Homicidal Threats - Person expresses the intention of killing another person or persons.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer49" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
 
 
@@ -224,99 +224,99 @@
             <h2>Anxiety</h2>
             <div class="form-group">
                 <label class="control-label">Anxious/Tense - Worry, disterss, or agitation from concern about something impending or anticipated. In a state of mental or nervous tension; taut; wired.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer50" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Phobic - Person experiences persistent, excessive, or unreasonable fear of a specific thing or situation.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer51" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Obsessive/Compulsive - To be excessively preoccupied. Recurrent and persistent thought, impulses, or images. Repetitive behaviors (e.g., hand washing, checking and rechecking) or mental acts (e.g. praying, counting) that the person feels driven to perform.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer52" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Worried/Fearful - Unpleasant sensations associated with anticipation or awareness of danger. Includes phobias which are exaggerated, usually inexplicable and illogical, fears or particular objects or a class of objects. Overly concerned about situations usually out of one's control. (?)</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer53" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Panic - The experience of a sudden overpowering fear or terror that substantially interferes with the individual's cognitive or behavioral functioning.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer54" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Guilt - A sense of having committed some breach of conduct: recrimination, blaming, self-faulting.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer55" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Anti-Anxiety Meds - Taking prescribed medication to treat clinical anxiety.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer56" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
 
             <h2>Traumatic Stress</h2>
             <div class="form-group">
                 <label class="control-label">Acute - Reaction is rapid, intense and usually of short duration.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer57" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Chronic - Reaction is continuous, recurrent and relatively long term.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer58" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Avoidance - Individual stays away from people, places, things, or situations, which are reminders of past negative events.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer59" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Upsetting Memories - Memories of past events that cause distress.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer60" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Dreams/Nightmares - Dreams or nightmares of unpleasant or traumatic events.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer61" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Detached - Divorced from emotional involvement; feeling detached or estranged from other people, aloof.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer62" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Repression/Amnesia - Partial or total inability to recall aspects of the trauma, loss of memory.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer63" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Hyper Vigilance - Acute or chronic "fear based" focus on minor common elements in situations or event in the environment, that substantially interferes with or replaces normal attention or caution.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer64" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
 
             <h2>Depression</h2>
             <div class="form-group">
                 <label class="control-label">Depressed Mood - Loss of interest is usual activities; hopeless feelings, flat, affect, or gloomy.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer65" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Sad - Affected or characterized by sorrow or unhappiness; somber.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer66" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Irritable - Easily annoyed, ill tempered, abnormally sensitive. Persistent anger, a tendency to respond to events with angry outburst or blaming others. Cranky mood.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer67" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Hopeless - Having no hope, despairing, bleak.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer68" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Withdrawn - Markedly low or reduced level of participation in social, vocational, or educational activities than would be expected for an individual based on their history or ability.</label>
-                <select class="form-control"   asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer69" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Sleep Problems - Disturbance in frequency, amount or pattern of sleep, this may include difficulty falling asleep or difficulty maintaining sleep.</label>
-                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer70" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Lacks Energy/Interest - Tiredness, fatigue, fatigue without physical exertion. Less interested in hobbies, "not caring anymore," loss of enjoyment in activities that were previously considered pleasurable.</label>
-                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer71" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
             <div class="form-group">
                 <label class="control-label">Anti-Depression Meds - Taking prescribed medication to treat clinical depression.</label>
-                <select class="form-control" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
+                <select class="form-control" asp-for="Answer72" asp-items="TherapyDashboard.Models.Database.Templates.CFARSList"></select>
             </div>
 
 
