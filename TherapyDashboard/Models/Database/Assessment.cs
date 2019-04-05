@@ -10,12 +10,16 @@ namespace TherapyDashboard.Models.Database
     public class CFARSAssessment
     {
         public int Id { get; set; }
+        [HiddenInput]
         public string ClientID { get; set; }
         public Client Client { get; set; }
+        [HiddenInput]
         public string UserId { get; set; }
         public DateTime ConductDate { get; set; }
+        [HiddenInput]
         public int EnrollmentID { get; set; }
         public Enrollment Enrollment { get; set; }
+        [HiddenInput]
         public int ParentAssessmentID { get; set; } // if this assessment is an edit, then what's the original?
 
         public int Score { // sum of all questions' values
@@ -39,291 +43,366 @@ namespace TherapyDashboard.Models.Database
         public int Subscale1Score {
             get {
                 int output = 0;
-                output += Answer1;
-                output += Answer2;
-                output += Answer3;
-                output += Answer4;
-                output += Answer5;
-                output += Answer6;
-                output += Answer7;
-                output += Answer8;
-                output += Answer9;
-                output += Answer10;
+                output += answer1;
+                output += answer2;
+                output += answer3;
+                output += answer4;
+                output += answer5;
+                output += answer6;
+                output += answer7;
+                output += answer8;
+                output += answer9;
+                output += answer10;
                 return output;
             }
         }
         
-        public int Answer1 { get; set; }
-        
-        public int Answer2 { get; set; }
-        
-        public int Answer3 { get; set; }
-        
-        public int Answer4 { get; set; }
-        
-        public int Answer5 { get; set; }
-        
-        public int Answer6 { get; set; }
-        
-        public int Answer7 { get; set; }
-        
-        public int Answer8 { get; set; }
-        
-        public int Answer9 { get; set; }
-        
-        public int Answer10 { get; set; }
+        private int answer1 { get; set; }
+        public string Answer1 { get { return answer1.ToString(); } set { answer1 = Int32.Parse(value); } }
+
+        private int answer2 { get; set; }
+        public string Answer2 { get { return answer2.ToString(); } set { answer2 = Int32.Parse(value); } }
+
+        private int answer3 { get; set; }
+        public string Answer3 { get { return answer3.ToString(); } set { answer3 = Int32.Parse(value); } }
+
+        private int answer4 { get; set; }
+        public string Answer4 { get { return answer4.ToString(); } set { answer4 = Int32.Parse(value); } }
+
+        private int answer5 { get; set; }
+        public string Answer5 { get { return answer5.ToString(); } set { answer5 = Int32.Parse(value); } }
+
+        private int answer6 { get; set; }
+        public string Answer6 { get { return answer6.ToString(); } set { answer6 = Int32.Parse(value); } }
+
+        private int answer7 { get; set; }
+        public string Answer7 { get { return answer7.ToString(); } set { answer7 = Int32.Parse(value); } }
+
+        private int answer8 { get; set; }
+        public string Answer8 { get { return answer8.ToString(); } set { answer8 = Int32.Parse(value); } }
+
+        private int answer9 { get; set; }
+        public string Answer9 { get { return answer9.ToString(); } set { answer9 = Int32.Parse(value); } }
+
+        private int answer10 { get; set; }
+        public string Answer10 { get { return answer10.ToString(); } set { answer10 = Int32.Parse(value); } }
 
         // subscale 2: work or school
         public int Subscale2Score {
             get {
                 int output = 0;
-                output += Answer11;
-                output += Answer12;
-                output += Answer13;
-                output += Answer14;
-                output += Answer15;
-                output += Answer16;
-                output += Answer17;
-                output += Answer18;
-                output += Answer19;
-                output += Answer20;
-                output += Answer21;
-                output += Answer22;
+                output += answer11;
+                output += answer12;
+                output += answer13;
+                output += answer14;
+                output += answer15;
+                output += answer16;
+                output += answer17;
+                output += answer18;
+                output += answer19;
+                output += answer20;
+                output += answer21;
+                output += answer22;
                 return output;
             }
         }
         
-        public int Answer11 { get; set; }
-        
-        public int Answer12 { get; set; }
-        
-        public int Answer13 { get; set; }
-        
-        public int Answer14 { get; set; }
-        
-        public int Answer15 { get; set; }
-        
-        public int Answer16 { get; set; }
-        
-        public int Answer17 { get; set; }
-        
-        public int Answer18 { get; set; }
-        
-        public int Answer19 { get; set; }
-        
-        public int Answer20 { get; set; }
-        
-        public int Answer21 { get; set; }
-        
-        public int Answer22 { get; set; }
+        private int answer11 { get; set; }
+        public string Answer11 { get { return answer11.ToString(); } set { answer11 = Int32.Parse(value); } }
+
+        private int answer12 { get; set; }
+        public string Answer12 { get { return answer12.ToString(); } set { answer12 = Int32.Parse(value); } }
+
+        private int answer13 { get; set; }
+        public string Answer13 { get { return answer13.ToString(); } set { answer13 = Int32.Parse(value); } }
+
+        private int answer14 { get; set; }
+        public string Answer14 { get { return answer14.ToString(); } set { answer14 = Int32.Parse(value); } }
+
+        private int answer15 { get; set; }
+        public string Answer15 { get { return answer15.ToString(); } set { answer15 = Int32.Parse(value); } }
+
+
+        private int answer16 { get; set; }
+        public string Answer16 { get { return answer16.ToString(); } set { answer16 = Int32.Parse(value); } }
+
+        private int answer17 { get; set; }
+        public string Answer17 { get { return answer17.ToString(); } set { answer17 = Int32.Parse(value); } }
+
+        private int answer18 { get; set; }
+        public string Answer18 { get { return answer18.ToString(); } set { answer18 = Int32.Parse(value); } }
+
+
+        private int answer19 { get; set; }
+        public string Answer19 { get { return answer19.ToString(); } set { answer19 = Int32.Parse(value); } }
+
+
+        private int answer20 { get; set; }
+        public string Answer20 { get { return answer20.ToString(); } set { answer20 = Int32.Parse(value); } }
+
+        private int answer21 { get; set; }
+        public string Answer21 { get { return answer21.ToString(); } set { answer21 = Int32.Parse(value); } }
+
+        private int answer22 { get; set; }
+        public string Answer22 { get { return answer22.ToString(); } set { answer22 = Int32.Parse(value); } }
 
         // subscale 3: interpersonal relationships
         public int Subscale3Score {
             get {
                 int output = 0;
-                output += Answer23;
-                output += Answer24;
-                output += Answer25;
-                output += Answer26;
+                output += answer23;
+                output += answer24;
+                output += answer25;
+                output += answer26;
                 return output;
             }
         }
         
-        public int Answer23 { get; set; }
-        
-        public int Answer24 { get; set; }
-        
-        public int Answer25 { get; set; }
-        
-        public int Answer26 { get; set; }
+        private int answer23 { get; set; }
+        public string Answer23 { get { return answer23.ToString(); } set { answer23 = Int32.Parse(value); } }
+
+        private int answer24 { get; set; }
+        public string Answer24 { get { return answer24.ToString(); } set { answer24 = Int32.Parse(value); } }
+
+        private int answer25 { get; set; }
+        public string Answer25 { get { return answer25.ToString(); } set { answer25 = Int32.Parse(value); } }
+
+        private int answer26 { get; set; }
+        public string Answer26 { get { return answer26.ToString(); } set { answer26 = Int32.Parse(value); } }
 
         // subscale 4: cognitive performance
         public int Subscale4Score {
             get {
                 int output = 0;
-                output += Answer27;
-                output += Answer28;
-                output += Answer29;
-                output += Answer30;
-                output += Answer31;
-                output += Answer32;
-                output += Answer33;
+                output += answer27;
+                output += answer28;
+                output += answer29;
+                output += answer30;
+                output += answer31;
+                output += answer32;
+                output += answer33;
                 return output;
             }
         }
         
-        public int Answer27 { get; set; }
-        
-        public int Answer28 { get; set; }
-        
-        public int Answer29 { get; set; }
-        
-        public int Answer30 { get; set; }
-        
-        public int Answer31 { get; set; }
-        
-        public int Answer32 { get; set; }
-        
-        public int Answer33 { get; set; }
+        private int answer27 { get; set; }
+        public string Answer27 { get { return answer27.ToString(); } set { answer27 = Int32.Parse(value); } }
+
+        private int answer28 { get; set; }
+        public string Answer28 { get { return answer28.ToString(); } set { answer28 = Int32.Parse(value); } }
+
+        private int answer29 { get; set; }
+        public string Answer29 { get { return answer29.ToString(); } set { answer29 = Int32.Parse(value); } }
+
+        private int answer30 { get; set; }
+        public string Answer30 { get { return answer30.ToString(); } set { answer30 = Int32.Parse(value); } }
+
+        private int answer31 { get; set; }
+        public string Answer31 { get { return answer31.ToString(); } set { answer31 = Int32.Parse(value); } }
+
+        private int answer32 { get; set; }
+        public string Answer32 { get { return answer32.ToString(); } set { answer32 = Int32.Parse(value); } }
+
+        private int answer33 { get; set; }
+        public string Answer33 { get { return answer33.ToString(); } set { answer33 = Int32.Parse(value); } }
 
         //subscale 5: behavior in "home" setting
         public int Subscale5Score {
             get {
                 int output = 0;
-                output += Answer34;
-                output += Answer35;
-                output += Answer36;
-                output += Answer37;
-                output += Answer38;
+                output += answer34;
+                output += answer35;
+                output += answer36;
+                output += answer37;
+                output += answer38;
                 return output;
             }
         }
         
-        public int Answer34 { get; set; }
-        
-        public int Answer35 { get; set; }
-        
-        public int Answer36 { get; set; }
-        
-        public int Answer37 { get; set; }
-        
-        public int Answer38 { get; set; }
+        private int answer34 { get; set; }
+        public string Answer34 { get { return answer34.ToString(); } set { answer34 = Int32.Parse(value); } }
+
+        private int answer35 { get; set; }
+        public string Answer35 { get { return answer35.ToString(); } set { answer35 = Int32.Parse(value); } }
+
+        private int answer36 { get; set; }
+        public string Answer36 { get { return answer36.ToString(); } set { answer36 = Int32.Parse(value); } }
+
+        private int answer37 { get; set; }
+        public string Answer37 { get { return answer37.ToString(); } set { answer37 = Int32.Parse(value); } }
+
+        private int answer38 { get; set; }
+        public string Answer38 { get { return answer38.ToString(); } set { answer38 = Int32.Parse(value); } }
 
 
         //subscale 6: danger to others
         public int Subscale6Score {
             get {
                 int output = 0;
-                output += Answer39;
-                output += Answer40;
-                output += Answer41;
-                output += Answer42;
-                output += Answer43;
-                output += Answer44;
-                output += Answer45;
-                output += Answer46;
-                output += Answer47;
-                output += Answer48;
-                output += Answer49;
+                output += answer39;
+                output += answer40;
+                output += answer41;
+                output += answer42;
+                output += answer43;
+                output += answer44;
+                output += answer45;
+                output += answer46;
+                output += answer47;
+                output += answer48;
+                output += answer49;
                 return output;
             }
         }
         
-        public int Answer39 { get; set; }
-        
-        public int Answer40 { get; set; }
-        
-        public int Answer41 { get; set; }
-        
-        public int Answer42 { get; set; }
-        
-        public int Answer43 { get; set; }
-        
-        public int Answer44 { get; set; }
-        
-        public int Answer45 { get; set; }
-        
-        public int Answer46 { get; set; }
-        
-        public int Answer47 { get; set; }
-        
-        public int Answer48 { get; set; }
-        
-        public int Answer49 { get; set; }
+        private int answer39 { get; set; }
+        public string Answer39 { get { return answer39.ToString(); } set { answer39 = Int32.Parse(value); } }
+
+        private int answer40 { get; set; }
+        public string Answer40 { get { return answer40.ToString(); } set { answer40 = Int32.Parse(value); } }
+
+        private int answer41 { get; set; }
+        public string Answer41 { get { return answer41.ToString(); } set { answer41 = Int32.Parse(value); } }
+
+        private int answer42 { get; set; }
+        public string Answer42 { get { return answer42.ToString(); } set { answer42 = Int32.Parse(value); } }
+
+        private int answer43 { get; set; }
+        public string Answer43 { get { return answer43.ToString(); } set { answer43 = Int32.Parse(value); } }
+
+        private int answer44 { get; set; }
+        public string Answer44 { get { return answer44.ToString(); } set { answer44 = Int32.Parse(value); } }
+
+        private int answer45 { get; set; }
+        public string Answer45 { get { return answer45.ToString(); } set { answer45 = Int32.Parse(value); } }
+
+        private int answer46 { get; set; }
+        public string Answer46 { get { return answer46.ToString(); } set { answer46 = Int32.Parse(value); } }
+
+        private int answer47 { get; set; }
+        public string Answer47 { get { return answer47.ToString(); } set { answer47 = Int32.Parse(value); } }
+
+        private int answer48 { get; set; }
+        public string Answer48 { get { return answer48.ToString(); } set { answer48 = Int32.Parse(value); } }
+
+        private int answer49 { get; set; }
+        public string Answer49 { get { return answer49.ToString(); } set { answer49 = Int32.Parse(value); } }
 
 
         //subscale 7: anxiety
         public int Subscale7Score {
             get {
                 int output = 0;
-                output += Answer50;
-                output += Answer51;
-                output += Answer52;
-                output += Answer53;
-                output += Answer54;
-                output += Answer55;
-                output += Answer56;
+                output += answer50;
+                output += answer51;
+                output += answer52;
+                output += answer53;
+                output += answer54;
+                output += answer55;
+                output += answer56;
                 return output;
             }
         }
         
-        public int Answer50 { get; set; }
-        
-        public int Answer51 { get; set; }
-        
-        public int Answer52 { get; set; }
-        
-        public int Answer53 { get; set; }
-        
-        public int Answer54 { get; set; }
-        
-        public int Answer55 { get; set; }
-        
-        public int Answer56 { get; set; }
+        private int answer50 { get; set; }
+        public string Answer50 { get { return answer50.ToString(); } set { answer50 = Int32.Parse(value); } }
+
+        private int answer51 { get; set; }
+        public string Answer51 { get { return answer51.ToString(); } set { answer51 = Int32.Parse(value); } }
+
+        private int answer52 { get; set; }
+        public string Answer52 { get { return answer52.ToString(); } set { answer52 = Int32.Parse(value); } }
+
+        private int answer53 { get; set; }
+        public string Answer53 { get { return answer53.ToString(); } set { answer53 = Int32.Parse(value); } }
+
+        private int answer54 { get; set; }
+        public string Answer54 { get { return answer54.ToString(); } set { answer54 = Int32.Parse(value); } }
+
+        private int answer55 { get; set; }
+        public string Answer55 { get { return answer55.ToString(); } set { answer55 = Int32.Parse(value); } }
+
+        private int answer56 { get; set; }
+        public string Answer56 { get { return answer56.ToString(); } set { answer56 = Int32.Parse(value); } }
 
         //subscale 8: traumatic stress
         public int Subscale8Score {
             get {
                 int output = 0;
-                output += Answer57;
-                output += Answer58;
-                output += Answer59;
-                output += Answer60;
-                output += Answer61;
-                output += Answer62;
-                output += Answer63;
-                output += Answer64;
+                output += answer57;
+                output += answer58;
+                output += answer59;
+                output += answer60;
+                output += answer61;
+                output += answer62;
+                output += answer63;
+                output += answer64;
                 return output;
             }
         }
         
-        public int Answer57 { get; set; }
-        
-        public int Answer58 { get; set; }
-        
-        public int Answer59 { get; set; }
-        
-        public int Answer60 { get; set; }
-        
-        public int Answer61 { get; set; }
-        
-        public int Answer62 { get; set; }
-        
-        public int Answer63 { get; set; }
-        
-        public int Answer64 { get; set; }
+        private int answer57 { get; set; }
+        public string Answer57 { get { return answer57.ToString(); } set { answer57 = Int32.Parse(value); } }
+
+        private int answer58 { get; set; }
+        public string Answer58 { get { return answer58.ToString(); } set { answer58 = Int32.Parse(value); } }
+
+        private int answer59 { get; set; }
+        public string Answer59 { get { return answer59.ToString(); } set { answer59 = Int32.Parse(value); } }
+
+        private int answer60 { get; set; }
+        public string Answer60 { get { return answer60.ToString(); } set { answer60 = Int32.Parse(value); } }
+
+        private int answer61 { get; set; }
+        public string Answer61 { get { return answer61.ToString(); } set { answer61 = Int32.Parse(value); } }
+
+        private int answer62 { get; set; }
+        public string Answer62 { get { return answer62.ToString(); } set { answer62 = Int32.Parse(value); } }
+
+        private int answer63 { get; set; }
+        public string Answer63 { get { return answer63.ToString(); } set { answer63 = Int32.Parse(value); } }
+
+        private int answer64 { get; set; }
+        public string Answer64 { get { return answer64.ToString(); } set { answer64 = Int32.Parse(value); } }
 
         //subscale 9: depression
         public int Subscale9Score {
             get {
                 int output = 0;
-                output += Answer65;
-                output += Answer66;
-                output += Answer67;
-                output += Answer68;
-                output += Answer69;
-                output += Answer70;
-                output += Answer71;
-                output += Answer72;
+                output += answer65;
+                output += answer66;
+                output += answer67;
+                output += answer68;
+                output += answer69;
+                output += answer70;
+                output += answer71;
+                output += answer72;
                 return output;
             }
         }
         
-        public int Answer65 { get; set; }
-        
-        public int Answer66 { get; set; }
-        
-        public int Answer67 { get; set; }
-        
-        public int Answer68 { get; set; }
-        
-        public int Answer69 { get; set; }
-        
-        public int Answer70 { get; set; }
-        
-        public int Answer71 { get; set; }
-        
-        public int Answer72 { get; set; }
+        private int answer65 { get; set; }
+        public string Answer65 { get { return answer65.ToString(); } set { answer65 = Int32.Parse(value); } }
+
+        private int answer66 { get; set; }
+        public string Answer66 { get { return answer66.ToString(); } set { answer66 = Int32.Parse(value); } }
+
+        private int answer67 { get; set; }
+        public string Answer67 { get { return answer67.ToString(); } set { answer67 = Int32.Parse(value); } }
+
+        private int answer68 { get; set; }
+        public string Answer68 { get { return answer68.ToString(); } set { answer68 = Int32.Parse(value); } }
+
+        private int answer69 { get; set; }
+        public string Answer69 { get { return answer69.ToString(); } set { answer69 = Int32.Parse(value); } }
+
+        private int answer70 { get; set; }
+        public string Answer70 { get { return answer70.ToString(); } set { answer70 = Int32.Parse(value); } }
+
+        private int answer71 { get; set; }
+        public string Answer71 { get { return answer71.ToString(); } set { answer71 = Int32.Parse(value); } }
+
+        private int answer72 { get; set; }
+        public string Answer72 { get { return answer72.ToString(); } set { answer72 = Int32.Parse(value); } }
         #endregion
     }
 
@@ -348,34 +427,34 @@ namespace TherapyDashboard.Models.Database
         public int Score { // sum of all questions, some "negatively coded" per instructions
             get {
                 int output = 0;
-                output += Answer1;
-                output += Answer2;
-                output -= Answer3;
-                output += Answer4;
-                output += Answer5;
-                output -= Answer6;
-                output += Answer7;
-                output += Answer8;
-                output -= Answer9;
-                output -= Answer10;
-                output -= Answer11;
-                output += Answer12;
-                output += Answer13;
-                output -= Answer14;
-                output -= Answer15;
-                output -= Answer16;
-                output += Answer17;
-                output -= Answer18;
-                output += Answer19;
-                output -= Answer20;
-                output -= Answer21;
-                output += Answer22;
-                output -= Answer23;
-                output -= Answer24;
-                output += Answer25;
-                output -= Answer26;
-                output += Answer27;
-                output += Answer28;
+                output += answer1;
+                output += answer2;
+                output -= answer3;
+                output += answer4;
+                output += answer5;
+                output -= answer6;
+                output += answer7;
+                output += answer8;
+                output -= answer9;
+                output -= answer10;
+                output -= answer11;
+                output += answer12;
+                output += answer13;
+                output -= answer14;
+                output -= answer15;
+                output -= answer16;
+                output += answer17;
+                output -= answer18;
+                output += answer19;
+                output -= answer20;
+                output -= answer21;
+                output += answer22;
+                output -= answer23;
+                output -= answer24;
+                output += answer25;
+                output -= answer26;
+                output += answer27;
+                output += answer28;
                 return output;
             }
         }
@@ -384,70 +463,70 @@ namespace TherapyDashboard.Models.Database
         public int SubscaleAScore { // perceptions of power and competence
             get {
                 int output = 0;
-                output += Answer1;
-                output -= Answer10;
-                output += Answer13;
-                output -= Answer15;
-                output -= Answer16;
-                output += Answer19;
-                output -= Answer20;
-                output += Answer28;
+                output += answer1;
+                output -= answer10;
+                output += answer13;
+                output -= answer15;
+                output -= answer16;
+                output += answer19;
+                output -= answer20;
+                output += answer28;
                 return output;
             }
         }
         public int SubscaleBScore { // self-nurturance and resource access
             get {
                 int output = 0;
-                output += Answer4;
-                output -= Answer23;
-                output -= Answer24;
+                output += answer4;
+                output -= answer23;
+                output -= answer24;
                 return output;
             }
         }
         public int SubscaleCScore { // interpersonal assertiveness
             get {
                 int output = 0;
-                output -= Answer3;
-                output += Answer7;
-                output -= Answer11;
-                output -= Answer14;
-                output += Answer22;
+                output -= answer3;
+                output += answer7;
+                output -= answer11;
+                output -= answer14;
+                output += answer22;
                 return output;
             }
         }
         public int SubscaleDScore { // awareness of cultural discrimination
             get {
                 int output = 0;
-                output += Answer5;
-                output += Answer8;
-                output += Answer27;
+                output += answer5;
+                output += answer8;
+                output += answer27;
                 return output;
             }
         }
         public int SubscaleEScore { // expression of anger and confrontation
             get {
                 int output = 0;
-                output -= Answer6;
-                output -= Answer21;
-                output -= Answer26;
+                output -= answer6;
+                output -= answer21;
+                output -= answer26;
                 return output;
             }
         }
         public int SubscaleFScore { // autonomy
             get {
                 int output = 0;
-                output += Answer2;
-                output += Answer12;
-                output += Answer17;
+                output += answer2;
+                output += answer12;
+                output += answer17;
                 return output;
             }
         }
         public int SubscaleGScore { // personal strength and social activisim
             get {
                 int output = 0;
-                output -= Answer9;
-                output -= Answer18;
-                output += Answer25;
+                output -= answer9;
+                output -= answer18;
+                output += answer25;
                 return output;
             }
         }
@@ -456,61 +535,89 @@ namespace TherapyDashboard.Models.Database
         #region questions and answers
         //// questions and answers
 
-        public int Answer1 { get; set; }
-        
-        public int Answer2 { get; set; }
-        
-        public int Answer3 { get; set; }
-        
-        public int Answer4 { get; set; }
-        
-        public int Answer5 { get; set; }
-        
-        public int Answer6 { get; set; }
-        
-        public int Answer7 { get; set; }
-        
-        public int Answer8 { get; set; }
-        
-        public int Answer9 { get; set; }
-        
-        public int Answer10 { get; set; }
-        
-        public int Answer11 { get; set; }
-        
-        public int Answer12 { get; set; }
-        
-        public int Answer13 { get; set; }
-        
-        public int Answer14 { get; set; }
-        
-        public int Answer15 { get; set; }
-        
-        public int Answer16 { get; set; }
-        
-        public int Answer17 { get; set; }
-        
-        public int Answer18 { get; set; }
-        
-        public int Answer19 { get; set; }
-        
-        public int Answer20 { get; set; }
-        
-        public int Answer21 { get; set; }
-        
-        public int Answer22 { get; set; }
-        
-        public int Answer23 { get; set; }
-        
-        public int Answer24 { get; set; }
-        
-        public int Answer25 { get; set; }
-        
-        public int Answer26 { get; set; }
-        
-        public int Answer27 { get; set; }
-        
-        public int Answer28 { get; set; }
+        private int answer1 { get; set; }
+        public string Answer1 { get { return answer1.ToString(); } set { answer1 = Int32.Parse(value); } }
+
+        private int answer2 { get; set; }
+        public string Answer2 { get { return answer2.ToString(); } set { answer2 = Int32.Parse(value); } }
+
+        private int answer3 { get; set; }
+        public string Answer3 { get { return answer3.ToString(); } set { answer3 = Int32.Parse(value); } }
+
+        private int answer4 { get; set; }
+        public string Answer4 { get { return answer4.ToString(); } set { answer4 = Int32.Parse(value); } }
+
+        private int answer5 { get; set; }
+        public string Answer5 { get { return answer5.ToString(); } set { answer5 = Int32.Parse(value); } }
+
+        private int answer6 { get; set; }
+        public string Answer6 { get { return answer6.ToString(); } set { answer6 = Int32.Parse(value); } }
+
+        private int answer7 { get; set; }
+        public string Answer7 { get { return answer7.ToString(); } set { answer7 = Int32.Parse(value); } }
+
+        private int answer8 { get; set; }
+        public string Answer8 { get { return answer8.ToString(); } set { answer8 = Int32.Parse(value); } }
+
+        private int answer9 { get; set; }
+        public string Answer9 { get { return answer9.ToString(); } set { answer9 = Int32.Parse(value); } }
+
+        private int answer10 { get; set; }
+        public string Answer10 { get { return answer10.ToString(); } set { answer10 = Int32.Parse(value); } }
+
+        private int answer11 { get; set; }
+        public string Answer11 { get { return answer11.ToString(); } set { answer11 = Int32.Parse(value); } }
+
+        private int answer12 { get; set; }
+        public string Answer12 { get { return answer12.ToString(); } set { answer12 = Int32.Parse(value); } }
+
+        private int answer13 { get; set; }
+        public string Answer13 { get { return answer13.ToString(); } set { answer13 = Int32.Parse(value); } }
+
+        private int answer14 { get; set; }
+        public string Answer14 { get { return answer14.ToString(); } set { answer14 = Int32.Parse(value); } }
+
+        private int answer15 { get; set; }
+        public string Answer15 { get { return answer15.ToString(); } set { answer15 = Int32.Parse(value); } }
+
+        private int answer16 { get; set; }
+        public string Answer16 { get { return answer16.ToString(); } set { answer16 = Int32.Parse(value); } }
+
+        private int answer17 { get; set; }
+        public string Answer17 { get { return answer17.ToString(); } set { answer17 = Int32.Parse(value); } }
+
+        private int answer18 { get; set; }
+        public string Answer18 { get { return answer18.ToString(); } set { answer18 = Int32.Parse(value); } }
+
+        private int answer19 { get; set; }
+        public string Answer19 { get { return answer19.ToString(); } set { answer19 = Int32.Parse(value); } }
+
+        private int answer20 { get; set; }
+        public string Answer20 { get { return answer20.ToString(); } set { answer20 = Int32.Parse(value); } }
+
+        private int answer21 { get; set; }
+        public string Answer21 { get { return answer21.ToString(); } set { answer21 = Int32.Parse(value); } }
+
+        private int answer22 { get; set; }
+        public string Answer22 { get { return answer22.ToString(); } set { answer22 = Int32.Parse(value); } }
+
+        private int answer23 { get; set; }
+        public string Answer23 { get { return answer23.ToString(); } set { answer23 = Int32.Parse(value); } }
+
+        private int answer24 { get; set; }
+        public string Answer24 { get { return answer24.ToString(); } set { answer24 = Int32.Parse(value); } }
+
+        private int answer25 { get; set; }
+        public string Answer25 { get { return answer25.ToString(); } set { answer25 = Int32.Parse(value); } }
+
+        private int answer26 { get; set; }
+        public string Answer26 { get { return answer26.ToString(); } set { answer26 = Int32.Parse(value); } }
+
+        private int answer27 { get; set; }
+        public string Answer27 { get { return answer27.ToString(); } set { answer27 = Int32.Parse(value); } }
+
+        private int answer28 { get; set; }
+        public string Answer28 { get { return answer28.ToString(); } set { answer28 = Int32.Parse(value); } }
         #endregion
     }
 
@@ -528,71 +635,91 @@ namespace TherapyDashboard.Models.Database
         public int Score { // sum of all question values. score of 33+ seems to suggest PTSD.
             get {
                 int output = 0;
-                output += Answer1;
-                output += Answer2;
-                output += Answer3;
-                output += Answer4;
-                output += Answer5;
-                output += Answer6;
-                output += Answer7;
-                output += Answer8;
-                output += Answer9;
-                output += Answer10;
-                output += Answer11;
-                output += Answer12;
-                output += Answer13;
-                output += Answer14;
-                output += Answer15;
-                output += Answer16;
-                output += Answer17;
-                output += Answer18;
-                output += Answer19;
-                output += Answer20;
+                output += answer1;
+                output += answer2;
+                output += answer3;
+                output += answer4;
+                output += answer5;
+                output += answer6;
+                output += answer7;
+                output += answer8;
+                output += answer9;
+                output += answer10;
+                output += answer11;
+                output += answer12;
+                output += answer13;
+                output += answer14;
+                output += answer15;
+                output += answer16;
+                output += answer17;
+                output += answer18;
+                output += answer19;
+                output += answer20;
                 return output;
             }
         }
 
         #region questions and answers
 
-        public int Answer1 { get; set; }
+        private int answer1 { get; set; }
+        public string Answer1 { get { return answer1.ToString(); } set { answer1 = Int32.Parse(value); } }
         
-        public int Answer2 { get; set; }
-        
-        public int Answer3 { get; set; }
-        
-        public int Answer4 { get; set; }
-        
-        public int Answer5 { get; set; }
-        
-        public int Answer6 { get; set; }
-        
-        public int Answer7 { get; set; }
-        
-        public int Answer8 { get; set; }
-        
-        public int Answer9 { get; set; }
-        
-        public int Answer10 { get; set; }
-        
-        public int Answer11 { get; set; }
-        
-        public int Answer12 { get; set; }
-        
-        public int Answer13 { get; set; }
-        
-        public int Answer14 { get; set; }
-        
-        public int Answer15 { get; set; }
-        
-        public int Answer16 { get; set; }
-        
-        public int Answer17 { get; set; }
-        
-        public int Answer18 { get; set; }
-        
-        public int Answer19 { get; set; }
-        
-        public int Answer20 { get; set; }
+        private int answer2 { get; set; }
+        public string Answer2 { get { return answer2.ToString(); } set { answer2 = Int32.Parse(value); } }
+
+        private int answer3 { get; set; }
+        public string Answer3 { get { return answer3.ToString(); } set { answer3 = Int32.Parse(value); } }
+
+        private int answer4 { get; set; }
+        public string Answer4 { get { return answer4.ToString(); } set { answer4 = Int32.Parse(value); } }
+
+        private int answer5 { get; set; }
+        public string Answer5 { get { return answer5.ToString(); } set { answer5 = Int32.Parse(value); } }
+
+        private int answer6 { get; set; }
+        public string Answer6 { get { return answer6.ToString(); } set { answer6 = Int32.Parse(value); } }
+
+        private int answer7 { get; set; }
+        public string Answer7 { get { return answer7.ToString(); } set { answer7 = Int32.Parse(value); } }
+
+        private int answer8 { get; set; }
+        public string Answer8 { get { return answer8.ToString(); } set { answer8 = Int32.Parse(value); } }
+
+        private int answer9 { get; set; }
+        public string Answer9 { get { return answer9.ToString(); } set { answer9 = Int32.Parse(value); } }
+
+        private int answer10 { get; set; }
+        public string Answer10 { get { return answer10.ToString(); } set { answer10 = Int32.Parse(value); } }
+
+        private int answer11 { get; set; }
+        public string Answer11 { get { return answer11.ToString(); } set { answer11 = Int32.Parse(value); } }
+
+        private int answer12 { get; set; }
+        public string Answer12 { get { return answer12.ToString(); } set { answer12 = Int32.Parse(value); } }
+
+        private int answer13 { get; set; }
+        public string Answer13 { get { return answer13.ToString(); } set { answer13 = Int32.Parse(value); } }
+
+        private int answer14 { get; set; }
+        public string Answer14 { get { return answer14.ToString(); } set { answer14 = Int32.Parse(value); } }
+
+        private int answer15 { get; set; }
+        public string Answer15 { get { return answer15.ToString(); } set { answer15 = Int32.Parse(value); } }
+
+        private int answer16 { get; set; }
+        public string Answer16 { get { return answer1.ToString(); } set { answer16 = Int32.Parse(value); } }
+
+        private int answer17 { get; set; }
+        public string Answer17 { get { return answer17.ToString(); } set { answer17 = Int32.Parse(value); } }
+
+        private int answer18 { get; set; }
+        public string Answer18 { get { return answer18.ToString(); } set { answer18 = Int32.Parse(value); } }
+
+        private int answer19 { get; set; }
+        public string Answer19 { get { return answer19.ToString(); } set { answer19 = Int32.Parse(value); } }
+
+        private int answer20 { get; set; }
+        public string Answer20 { get { return answer20.ToString(); } set { answer20 = Int32.Parse(value); } }
         #endregion questions and answers
     }
 
