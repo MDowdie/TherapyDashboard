@@ -54,7 +54,7 @@ namespace TherapyDashboard.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
+                
                 if (ModelState.IsValid)
                 {
                     _context.Add(client);
@@ -68,6 +68,7 @@ namespace TherapyDashboard.Controllers
             }
             catch
             {
+                //TODO return error message
                 return View(client);
             }
         }

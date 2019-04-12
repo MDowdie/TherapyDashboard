@@ -15,6 +15,7 @@ namespace TherapyDashboard.Models.Database
         public Client Client { get; set; }
         [HiddenInput]
         public string UserId { get; set; }
+        [HiddenInput]
         public DateTime ConductDate { get; set; }
         [HiddenInput]
         public int EnrollmentID { get; set; }
