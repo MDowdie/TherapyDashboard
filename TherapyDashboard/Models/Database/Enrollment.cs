@@ -12,7 +12,10 @@ namespace TherapyDashboard.Models.Database
 
         public string ParticipatingIn { get; set; } // program, such as Outreach, Court Advocacy, etc.
 
-        public List<Assessment> Assessments { get; set; }
+        public List<CFARSAssessment> CFARSAssessments { get; set; }
+        public List<PPSRAssessment> PPSRAssessments { get; set; }
+        public List<PCLAssessment> PCLAssessments { get; set; }
+
 
         public string ClientId { get; set; }
 

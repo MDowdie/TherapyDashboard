@@ -98,7 +98,7 @@
                                 }
 
 
-                                @if (enrollment.End.Ticks == 0 || enrollment.Assessments == null) // if enrollment is either ongoing or has no assessments
+                                @if (enrollment.End.Ticks == 0 || enrollment.CFARSAssessments == null) // if enrollment is either ongoing or has no assessments
                                 {
                                     <!--Enrollment Management section-->
                                     <h6 class="dropdown-header">Manage Enrollment</h6>
@@ -107,13 +107,13 @@
                                 {
                                     <a class="dropdown-item" href="/Clients/EndEnrollment?id=@enrollment.Id&client=@Model.Id">End Today</a>
                                 }
-                                @if (enrollment.Assessments == null) // if there are no assessments so far
+                                @if (enrollment.CFARSAssessments == null) // if there are no assessments so far
                                 {
                                     <a class="dropdown-item" href="/Clients/DeleteEnrollment?id=@enrollment.Id&client=@Model.Id">Delete</a>
                                 }
 
 
-                                @if (enrollment.End.Ticks != 0 && enrollment.Assessments != null)
+                                @if (enrollment.End.Ticks != 0 && enrollment.CFARSAssessments != null)
                                 {
                                     <!--No actions available-->
                                     <div class="dropdown-menu p-4 text-muted" style="max-width:200px">
@@ -127,13 +127,13 @@
                     </div>
 
                     <!-- list of all assessments in current program enrollment -->
-                    @if (enrollment.Assessments == null)
+                    @if (enrollment.CFARSAssessments == null)
                     {
                         <small class="h4 text-muted">No assessments in this program enrollment at this time.</small>
                     }
                     else
                     {
-                        if (enrollment.Assessments.Count == 0)
+                        if (enrollment.CFARSAssessments.Count == 0)
                         {
                             <small class="h4 text-muted">No assessments in this program enrollment at this time.</small>
                         }
@@ -148,12 +148,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var assessment in enrollment.Assessments.OrderBy(x => x.ConductedOn))
+                                    @foreach (var assessment in enrollment.CFARSAssessments.OrderBy(x => x.ConductDate))
                                     {
                                         <tr>
-                                            <th scope="row">@assessment.ConductedOn</th>
-                                            <th>@assessment.AssessmentType</th>
-                                            <th>@assessment.Tag</th>
+                                            <th scope="row">@assessment.ConductDate</th>
+                                            <th>CFARS</th>
                                         </tr>
                                     }
                                 </tbody>
