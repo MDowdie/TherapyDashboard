@@ -32,7 +32,7 @@ namespace TherapyDashboard.Controllers
         }
         public IActionResult ConductCFARS(string EnrollmentId)
         {
-            ViewBag["EnrollmentId"] = EnrollmentId;
+            //ViewBag["EnrollmentId"] = EnrollmentId;
             return View();
         }
 
@@ -96,12 +96,12 @@ namespace TherapyDashboard.Controllers
 
 
 
-        public IActionResult PPSR()
+        public IActionResult ConductPPSR()
         {
             return View();
         }
 
-        public IActionResult PCL()
+        public IActionResult ConductPCL()
         {
             return View();
         }

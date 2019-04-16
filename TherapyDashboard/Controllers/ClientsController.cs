@@ -203,6 +203,7 @@ namespace TherapyDashboard.Controllers
                         throw;
                     }
                 }
+                _context.Entry(client).Collection(c => c.Enrollments).Load();
                 return View(client);
             }
             return View(client);
