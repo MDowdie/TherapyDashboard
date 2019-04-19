@@ -30,23 +30,42 @@ namespace TherapyDashboard.Controllers
         {
             return View();
         }
-        public IActionResult ConductCFARS(string EnrollmentId)
+        public IActionResult ConductCFARS(int EnrollmentId)
         {
-            //ViewBag["EnrollmentId"] = EnrollmentId;
-            return View();
+            ViewBag.EnrollmentId = EnrollmentId;
+            CFARSAssessment assessment = new CFARSAssessment();
+
+            Enrollment enrollment = _context.Enrollments.Single(c => c.Id == EnrollmentId);
+            assessment.EnrollmentID = EnrollmentId;
+            assessment.Client = enrollment.Client;
+            assessment.ClientID = enrollment.ClientId;
+
+
+            return View(assessment);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ConductCFARS([Bind("Answer1,Answer2,Answer3,Answer4,Answer5,Answer6,Answer7,Answer8,Answer9,Answer10,Answer11,Answer12,Answer13,Answer14,Answer15,Answer16,Answer17,Answer18,Answer19,Answer20,Answer21,Answer22,Answer23,Answer24,Answer25,Answer26,Answer27,Answer28,Answer29,Answer30,Answer31,Answer32,Answer33,Answer34,Answer35,Answer36,Answer37,Answer38,Answer39,Answer40,Answer41,Answer42,Answer43,Answer44,Answer45,Answer46,Answer47,Answer48,Answer49,Answer50,Answer51,Answer52,Answer53,Answer54,Answer55,Answer56,Answer57,Answer58,Answer59,Answer60,Answer61,Answer62,Answer63,Answer64,Answer65,Answer66,Answer67,Answer68,Answer69,Answer70,Answer71,Answer72")] CFARSAssessment cfarsAssessment)
+        public async Task<ActionResult> ConductCFARS(CFARSAssessment cfarsAssessment, string id)
         {
-            cfarsAssessment.ConductDate = DateTime.Today;
-            cfarsAssessment.UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            Enrollment enrollment = _context.Enrollments.Single(c => c.Id == Int32.Parse(id));
 
+
+            cfarsAssessment.ConductDate = DateTime.Today;
+            cfarsAssessment.UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value; // current logged in user's id
+            cfarsAssessment.Client = enrollment.Client;
+            cfarsAssessment.ClientID = enrollment.ClientId;
+            cfarsAssessment.Enrollment = enrollment;
+            cfarsAssessment.EnrollmentID = enrollment.Id;
+
+            cfarsAssessment.Id = 0; // this is a wet bandaid solution. for some reason, the id here keeps being set in the form page to the enrollment's ID, which makes the SQL server pitch a hissy fit
 
             if (ModelState.IsValid)
             {
-                _context.Add(cfarsAssessment);
+                
+                _context.CFARSAssessments.Add(cfarsAssessment);
+                enrollment.CFARSAssessments.Add(cfarsAssessment);
+                _context.Enrollments.Update(enrollment);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index)); // todo : change redirect to "Thanks for filling out the assessment! Please pass back to etc.,etc."
             }

@@ -36,6 +36,12 @@ namespace TherapyDashboard.Controllers
 
             Client client = _context.Clients.Single(c => c.Id == id);
             _context.Entry(client).Collection(c => c.Enrollments).Load();
+            foreach(Enrollment enrollment in client.Enrollments)
+            {
+                _context.Entry(enrollment).Collection(c => c.CFARSAssessments).Load();
+                _context.Entry(enrollment).Collection(c => c.PPSRAssessments).Load();
+                _context.Entry(enrollment).Collection(c => c.PCLAssessments).Load();
+            }
 
 
             return View(client);
@@ -127,10 +133,13 @@ namespace TherapyDashboard.Controllers
             }
             if (!enrollmentAlreadyExists)
             {
-                Enrollment enrollment = new Enrollment();
-                enrollment.ParticipatingIn = program;
-                enrollment.Client = ClientInQuestion;
-                enrollment.Start = DateTime.Today;
+                Enrollment enrollment = new Enrollment
+                {
+                    ParticipatingIn = program,
+                    Client = ClientInQuestion,
+                    ClientId = ClientInQuestion.Id,
+                    Start = DateTime.Today
+                };
 
                 _context.Enrollments.Add(enrollment);
                 ClientInQuestion.Enrollments.Add(enrollment);

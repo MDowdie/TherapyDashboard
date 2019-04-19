@@ -16,6 +16,26 @@ namespace TherapyDashboard.Models.Database
         public List<PPSRAssessment> PPSRAssessments { get; set; }
         public List<PCLAssessment> PCLAssessments { get; set; }
 
+        public int AssessmentCount
+        {
+            get
+            {
+                int output = 0;
+                if(CFARSAssessments != null)
+                {
+                    output += CFARSAssessments.Count;
+                }
+                if(PPSRAssessments != null)
+                {
+                    output += PPSRAssessments.Count;
+                }
+                if(PCLAssessments != null)
+                {
+                    output += PCLAssessments.Count;
+                }
+                return output;
+            }
+        }
 
         public string ClientId { get; set; }
 

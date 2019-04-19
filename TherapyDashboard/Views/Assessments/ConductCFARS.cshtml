@@ -4,12 +4,13 @@
     ViewData["Title"] = "Conduct CFARS Assessment";
 }
 
-<h1>CFARS</h1>
+<h1>CFARS Problem Severity Ratings, for Client @Model.ClientID</h1>
 
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="CreateCFARS">
+        <form asp-action="ConductCFARS" asp-route-id="@Model.EnrollmentID">
             <p>Use the following 1 to 9 scale to rate the child's problem severity for each functional domain listed below as observed or reported by parent/child/other.</p>
+            
             <!-- Subscale #1 -->
             <h2>Hyperactivity</h2>
             <div class="form-group">

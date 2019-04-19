@@ -113,52 +113,43 @@
                                 }
 
 
-                                @if (enrollment.End.Ticks != 0 && enrollment.CFARSAssessments != null)
+                                @if (enrollment.End.Ticks != 0 && enrollment.AssessmentCount != 0)
                                 {
                                     <!--No actions available-->
-                                    <div class="dropdown-menu p-4 text-muted" style="max-width:200px">
-                                        <p>
-                                            No actions available.
-                                        </p>
-                                    </div>
+                                    <h6 class="dropdown-header">No Actions Available</h6>
                                 }
                             </div>
                         </div>
                     </div>
 
                     <!-- list of all assessments in current program enrollment -->
-                    @if (enrollment.CFARSAssessments == null)
+                    @if (enrollment.AssessmentCount == 0)
                     {
                         <small class="h4 text-muted">No assessments in this program enrollment at this time.</small>
                     }
                     else
                     {
-                        if (enrollment.CFARSAssessments.Count == 0)
-                        {
-                            <small class="h4 text-muted">No assessments in this program enrollment at this time.</small>
-                        }
-                        else
-                        {
-                            <table class="table table-sm">
-                                <thead>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var assessment in enrollment.CFARSAssessments.OrderBy(x => x.ConductDate))
+                                {
                                     <tr>
-                                        <th scope="col">Date</th>
-                                        <th scope="col">Type</th>
-                                        <th scope="col">Marked As</th>
+                                        <th scope="row">@assessment.ConductDate.ToString("d")</th>
+                                        <th>CFARS</th>
+                                        <th>@assessment.Score</th>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var assessment in enrollment.CFARSAssessments.OrderBy(x => x.ConductDate))
-                                    {
-                                        <tr>
-                                            <th scope="row">@assessment.ConductDate</th>
-                                            <th>CFARS</th>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        }
+                                }
+                            </tbody>
+                        </table>
                     }
+                    
                 </div>
             }
         }
