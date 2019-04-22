@@ -92,8 +92,8 @@
                                     <!--Conduct New Assessment section-->
                                     <h6 class="dropdown-header">Conduct New Assessment</h6>
                                     <a asp-controller="Assessments" asp-action="ConductCFARS" asp-route-enrollmentid="@enrollment.Id" class="dropdown-item" target="_blank">CFARS</a>
-                                    <a asp-controller="Assessments" asp-action="ConductPPSR" class="dropdown-item" target="_blank">PPS-R</a>
-                                    <a asp-controller="Assessments" asp-action="ConductPCL" class="dropdown-item" target="_blank">PCL</a>
+                                    <a asp-controller="Assessments" asp-action="ConductPPSR" asp-route-enrollmentid="@enrollment.Id" class="dropdown-item" target="_blank">PPS-R</a>
+                                    <a asp-controller="Assessments" asp-action="ConductPCL" asp-route-enrollmentid="@enrollment.Id" class="dropdown-item" target="_blank">PCL</a>
                                     <div class="dropdown-divider"></div>
                                 }
 
@@ -138,14 +138,36 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var assessment in enrollment.CFARSAssessments.OrderBy(x => x.ConductDate))
+                                @if (@enrollment.CFARSAssessments != null)
                                 {
-                                    <tr>
-                                        <th scope="row">@assessment.ConductDate.ToString("d")</th>
-                                        <th>CFARS</th>
-                                        <th>@assessment.Score</th>
-                                    </tr>
-                                }
+                                    @foreach (var assessment in enrollment.CFARSAssessments.OrderBy(x => x.ConductDate))
+                                    {
+                                        <tr>
+                                            <th scope="row"><a asp-controller="Assessments" asp-action="ViewCFARS" asp-route-id="@assessment.Id"> @assessment.ConductDate.ToString("d")</a></th>
+                                            <th>CFARS</th>
+                                            <th>@assessment.Score</th>
+                                        </tr>
+                                    }}
+                                @if (enrollment.PPSRAssessments != null)
+                                {
+                                    @foreach (var assessment in enrollment.PPSRAssessments.OrderBy(x => x.ConductDate))
+                                    {
+                                        <tr>
+                                            <th scope="row"><a asp-controller="Assessments" asp-action="ViewPPSR" asp-route-id="@assessment.Id"> @assessment.ConductDate.ToString("d")</a></th>
+                                            <th>PPSR</th>
+                                            <th>@assessment.Score</th>
+                                        </tr>
+                                    }}
+                                @if (enrollment.PCLAssessments != null)
+                                {
+                                    @foreach (var assessment in enrollment.PCLAssessments.OrderBy(x => x.ConductDate))
+                                    {
+                                        <tr>
+                                            <th scope="row"><a asp-controller="Assessments" asp-action="ViewPCL" asp-route-id="@assessment.Id"> @assessment.ConductDate.ToString("d")</a></th>
+                                            <th>PCL</th>
+                                            <th>@assessment.Score</th>
+                                        </tr>
+                                    }}
                             </tbody>
                         </table>
                     }

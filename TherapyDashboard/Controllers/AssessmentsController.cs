@@ -51,7 +51,7 @@ namespace TherapyDashboard.Controllers
             Enrollment enrollment = _context.Enrollments.Single(c => c.Id == Int32.Parse(id));
 
 
-            cfarsAssessment.ConductDate = DateTime.Today;
+            cfarsAssessment.ConductDate = DateTime.Now;
             cfarsAssessment.UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value; // current logged in user's id
             cfarsAssessment.Client = enrollment.Client;
             cfarsAssessment.ClientID = enrollment.ClientId;
@@ -74,7 +74,8 @@ namespace TherapyDashboard.Controllers
 
         public IActionResult ViewCFARS(int id) // something the client would be allowed to view
         {
-            return View(id); // todo: change to return View(instantiated object);
+            CFARSAssessment assessment = _context.CFARSAssessments.Single(c => c.Id == id);
+            return View(assessment); // todo: change to return View(instantiated object);
         }
 
         public IActionResult ViewCFARSDetails(int id) // with in depth scores, and heatmapped answers
@@ -115,14 +116,96 @@ namespace TherapyDashboard.Controllers
 
 
 
-        public IActionResult ConductPPSR()
+        public IActionResult ConductPPSR(int EnrollmentId)
         {
-            return View();
+            ViewBag.EnrollmentId = EnrollmentId;
+            PPSRAssessment assessment = new PPSRAssessment();
+
+            Enrollment enrollment = _context.Enrollments.Single(c => c.Id == EnrollmentId);
+            assessment.EnrollmentID = EnrollmentId;
+            assessment.Client = enrollment.Client;
+            assessment.ClientID = enrollment.ClientId;
+
+
+            return View(assessment);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ConductPPSR(PPSRAssessment ppsrAssessment, int id)
+        {
+            Enrollment enrollment = _context.Enrollments.Single(c => c.Id == id);
+
+
+            ppsrAssessment.ConductDate = DateTime.Now;
+            ppsrAssessment.UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value; // current logged in user's id
+            ppsrAssessment.Client = enrollment.Client;
+            ppsrAssessment.ClientID = enrollment.ClientId;
+            ppsrAssessment.Enrollment = enrollment;
+            ppsrAssessment.EnrollmentID = enrollment.Id;
+
+            ppsrAssessment.Id = 0; // this is a wet bandaid solution. for some reason, the id here keeps being set in the form page to the enrollment's ID, which makes the SQL server pitch a hissy fit
+
+            if (ModelState.IsValid)
+            {
+
+                _context.PPSRAssessments.Add(ppsrAssessment);
+                enrollment.PPSRAssessments.Add(ppsrAssessment);
+                _context.Enrollments.Update(enrollment);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index)); // todo : change redirect to "Thanks for filling out the assessment! Please pass back to etc.,etc."
+            }
+            return View(ppsrAssessment);
+        }
+        public IActionResult ViewPPSR(int id) // something the client would be allowed to view
+        {
+            PPSRAssessment assessment = _context.PPSRAssessments.Single(c => c.Id == id);
+            return View(assessment); // todo: change to return View(instantiated object);
         }
 
-        public IActionResult ConductPCL()
+        public IActionResult ConductPCL(int EnrollmentId)
         {
-            return View();
+            ViewBag.EnrollmentId = EnrollmentId;
+            PCLAssessment assessment = new PCLAssessment();
+
+            Enrollment enrollment = _context.Enrollments.Single(c => c.Id == EnrollmentId);
+            assessment.EnrollmentID = EnrollmentId;
+            assessment.Client = enrollment.Client;
+            assessment.ClientID = enrollment.ClientId;
+
+
+            return View(assessment);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ConductPCL(PCLAssessment pclAssessment, int id)
+        {
+            Enrollment enrollment = _context.Enrollments.Single(c => c.Id == id);
+
+
+            pclAssessment.ConductDate = DateTime.Now;
+            pclAssessment.UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value; // current logged in user's id
+            pclAssessment.Client = enrollment.Client;
+            pclAssessment.ClientID = enrollment.ClientId;
+            pclAssessment.Enrollment = enrollment;
+            pclAssessment.EnrollmentID = enrollment.Id;
+
+            pclAssessment.Id = 0; // this is a wet bandaid solution. for some reason, the id here keeps being set in the form page to the enrollment's ID, which makes the SQL server pitch a hissy fit
+
+            if (ModelState.IsValid)
+            {
+
+                _context.PCLAssessments.Add(pclAssessment);
+                enrollment.PCLAssessments.Add(pclAssessment);
+                _context.Enrollments.Update(enrollment);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index)); // todo : change redirect to "Thanks for filling out the assessment! Please pass back to etc.,etc."
+            }
+            return View(pclAssessment);
+        }
+        public IActionResult ViewPCL(int id) // something the client would be allowed to view
+        {
+            PCLAssessment assessment = _context.PCLAssessments.Single(c => c.Id == id);
+            return View(assessment); // todo: change to return View(instantiated object);
         }
 
 

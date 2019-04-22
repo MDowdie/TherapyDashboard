@@ -1,10 +1,11 @@
 ﻿@model TherapyDashboard.Models.Database.PCLAssessment
 @using TherapyDashboard.Areas.Identity.Data
 @{
-    ViewData["Title"] = "Conduct PCL Assessment";
+    ViewData["Title"] = "View PCL Assessment";
 }
 
 <h1>PTSD Checklist (PCL-5), for Client @Model.ClientID</h1>
+<h3><span class="badge badge-secondary">@Model.Score</span> Dated @Model.ConductDate.ToString("d")</h3>
 
 <div class="row">
     <div class="col-md-12">
@@ -93,7 +94,7 @@
 
 
             <div class="form-group">
-                <input type="submit" value="Submit" class="btn btn-primary" />
+                <a class="btn btn-primary" asp-controller="Clients" asp-action="Details" asp-route-id="@Model.ClientID">Back to Client Details</a>
             </div>
         </form>
     </div>

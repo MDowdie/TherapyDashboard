@@ -1,14 +1,57 @@
 ﻿@model TherapyDashboard.Models.Database.PPSRAssessment
 @using TherapyDashboard.Areas.Identity.Data
 @{
-    ViewData["Title"] = "Conduct PPS-R Assessment";
+    ViewData["Title"] = "View PPS-R Assessment";
 }
 
 <h1>Empowerment Scale (PPS-R), for Client @Model.ClientID</h1>
+<h3><span class="badge badge-secondary">@Model.Score</span> Dated @Model.ConductDate.ToString("d")</h3>
 
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="ConductPPSR" asp-route-id="@Model.EnrollmentID">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Subscale</th>
+                    <th scope="col">Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>A. Perceptions of Power and Competence</th>
+                    <th><span class="badge badge-secondary">@Model.SubscaleAScore</span></th>
+                </tr>
+                <tr>
+                    <th>B. Self-Nurturance and Resource Access</th>
+                    <th><span class="badge badge-secondary">@Model.SubscaleBScore</span></th>
+                </tr>
+                <tr>
+                    <th>C. Interpersonal Assertiveness</th>
+                    <th><span class="badge badge-secondary">@Model.SubscaleCScore</span></th>
+                </tr>
+                <tr>
+                    <th>D. Awareness of Cultural Discrimination</th>
+                    <th><span class="badge badge-secondary">@Model.SubscaleDScore</span></th>
+                </tr>
+                <tr>
+                    <th>E. Expression of Anger and Confrontation</th>
+                    <th><span class="badge badge-secondary">@Model.SubscaleEScore</span></th>
+                </tr>
+                <tr>
+                    <th>F. Autonomy</th>
+                    <th><span class="badge badge-secondary">@Model.SubscaleFScore</span></th>
+                </tr>
+                <tr>
+                    <th>G. Personal Strength and Social Activism</th>
+                    <th><span class="badge badge-secondary">@Model.SubscaleGScore</span></th>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+        <form>
             <p>The following statements identify feelings or experiences that some people use to describe themselves. Please answer each question in terms of any aspects of your personal identity that are important to you as a woman, such as gender, race, ethnicity, culture, nationality, sexual orientation, family background, etc. There are no right or wrong answers.</p>
             <div class="form-group">
                 <label class="control-label">1. I have equal relationships with important others in my life.</label>
@@ -124,7 +167,7 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Submit" class="btn btn-primary" />
+                <a class="btn btn-primary" asp-controller="Clients" asp-action="Details" asp-route-id="@Model.ClientID">Back to Client Details</a>
             </div>
         </form>
     </div>

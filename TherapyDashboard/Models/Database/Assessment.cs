@@ -522,7 +522,7 @@ namespace TherapyDashboard.Models.Database
                 return output;
             }
         }
-        public int SubscaleGScore { // personal strength and social activisim
+        public int SubscaleGScore { // personal strength and social activism
             get {
                 int output = 0;
                 output -= answer9;
