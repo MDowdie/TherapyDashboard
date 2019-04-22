@@ -5,7 +5,12 @@
 
 
 }
-
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Accounts Dashboard</li>
+    </ol>
+</nav>
 <h1>Accounts Dashboard</h1>
 
 <a class="btn btn-primary" href="/Identity/Account/Register">Create New Account</a>

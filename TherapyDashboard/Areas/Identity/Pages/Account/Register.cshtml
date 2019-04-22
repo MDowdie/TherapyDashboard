@@ -6,7 +6,13 @@
 
     ViewBag.RoleOptions = RoleType.ToSelectListItems;
 }
-
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Admin">Accounts Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Register Account</li>
+    </ol>
+</nav>
 <h1>@ViewData["Title"]</h1>
 
 <div class="row">

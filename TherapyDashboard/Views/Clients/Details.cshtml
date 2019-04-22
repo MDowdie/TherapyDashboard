@@ -3,7 +3,13 @@
 @{
     ViewData["Title"] = Model.Id + " Details";
 }
-
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Clients">Manage Clients</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Client @Model.Id</li>
+    </ol>
+</nav>
 <h1>Client @Model.Id</h1>
 
 <div class="row">

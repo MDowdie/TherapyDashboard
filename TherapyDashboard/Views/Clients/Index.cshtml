@@ -2,8 +2,13 @@
 @{
     ViewData["Title"] = "Clients";
 }
-
-<h1>Clients</h1>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Manage Clients</li>
+    </ol>
+</nav>
+<h1>Manage Clients</h1>
 <a asp-action="Create" class="btn btn-primary">Add New Client</a>
 <table class="table">
     <thead>

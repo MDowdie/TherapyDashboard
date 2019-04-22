@@ -2,7 +2,47 @@
 @{
     ViewData["Title"] = "Reports";
 }
-
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Generate Reports</li>
+    </ol>
+</nav>
+<h1>Demo: Aggregate Scores</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Assessment</th>
+            <th scope="col">Count</th>
+            <th scope="col">Min</th>
+            <th scope="col">Average</th>
+            <th scope="col">Max</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">CFARS</th>
+            <td>@ViewData["ctCFARS"]</td>
+            <td>@ViewData["minCFARS"]</td>
+            <td>@ViewData["avgCFARS"]</td>
+            <td>@ViewData["maxCFARS"]</td>
+        </tr>
+        <tr>
+            <th scope="row">PPSR</th>
+            <td>@ViewData["ctPPSR"]</td>
+            <td>@ViewData["minPPSR"]</td>
+            <td>@ViewData["avgPPSR"]</td>
+            <td>@ViewData["maxPPSR"]</td>
+        </tr>
+        <tr>
+            <th scope="row">PCL</th>
+            <td>@ViewData["ctPCL"]</td>
+            <td>@ViewData["minPCL"]</td>
+            <td>@ViewData["avgPCL"]</td>
+            <td>@ViewData["maxPCL"]</td>
+        </tr>
+    </tbody>
+</table>
 <h1>Demo: Generating Excel Files</h1>
 
 <a asp-controller="Reports" asp-action="Export" class="btn btn-primary">Export Data Sheet Demo</a><br/>
