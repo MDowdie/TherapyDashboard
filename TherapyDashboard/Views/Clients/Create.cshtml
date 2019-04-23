@@ -2,7 +2,13 @@
 @{
     ViewData["Title"] = "Add Client";
 }
-
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Clients">Manage Clients</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add Client to Database</li>
+    </ol>
+</nav>
 <h1>Add Client to Database</h1>
 <h4>You'll be able to add more details after you enter their ID.</h4>
 <hr />

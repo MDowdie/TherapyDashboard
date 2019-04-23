@@ -6,6 +6,11 @@
 @inject SignInManager<TherapyDashboardUser> SignInManager
 @inject UserManager<TherapyDashboardUser> UserManager
 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Home</li>
+    </ol>
+</nav>
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
 </div>
@@ -16,8 +21,7 @@
     }
     @if (User.IsInRole(RoleType.Admin) || User.IsInRole(RoleType.Counselor) || User.IsInRole(RoleType.Intern))
     {
-        <a href="#" class="list-group-item list-group-item-action">Conduct Assessment</a>
-        <a asp-controller="Clients" asp-action="Index" class="list-group-item list-group-item-action">View Clients</a>
+        <a asp-controller="Clients" asp-action="Index" class="list-group-item list-group-item-action">Manage Clients</a>
     }
     @if (User.IsInRole(RoleType.Admin) || User.IsInRole(RoleType.Counselor))
     {

@@ -192,78 +192,173 @@ namespace TherapyDashboard.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("TherapyDashboard.Models.Database.Answer", b =>
+            modelBuilder.Entity("TherapyDashboard.Models.Database.CFARSAssessment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AssessmentEditId");
+                    b.Property<string>("Answer1");
 
-                    b.Property<int?>("AssessmentId");
+                    b.Property<string>("Answer10");
 
-                    b.Property<int>("Number");
+                    b.Property<string>("Answer11");
 
-                    b.Property<int>("Response");
+                    b.Property<string>("Answer12");
+
+                    b.Property<string>("Answer13");
+
+                    b.Property<string>("Answer14");
+
+                    b.Property<string>("Answer15");
+
+                    b.Property<string>("Answer16");
+
+                    b.Property<string>("Answer17");
+
+                    b.Property<string>("Answer18");
+
+                    b.Property<string>("Answer19");
+
+                    b.Property<string>("Answer2");
+
+                    b.Property<string>("Answer20");
+
+                    b.Property<string>("Answer21");
+
+                    b.Property<string>("Answer22");
+
+                    b.Property<string>("Answer23");
+
+                    b.Property<string>("Answer24");
+
+                    b.Property<string>("Answer25");
+
+                    b.Property<string>("Answer26");
+
+                    b.Property<string>("Answer27");
+
+                    b.Property<string>("Answer28");
+
+                    b.Property<string>("Answer29");
+
+                    b.Property<string>("Answer3");
+
+                    b.Property<string>("Answer30");
+
+                    b.Property<string>("Answer31");
+
+                    b.Property<string>("Answer32");
+
+                    b.Property<string>("Answer33");
+
+                    b.Property<string>("Answer34");
+
+                    b.Property<string>("Answer35");
+
+                    b.Property<string>("Answer36");
+
+                    b.Property<string>("Answer37");
+
+                    b.Property<string>("Answer38");
+
+                    b.Property<string>("Answer39");
+
+                    b.Property<string>("Answer4");
+
+                    b.Property<string>("Answer40");
+
+                    b.Property<string>("Answer41");
+
+                    b.Property<string>("Answer42");
+
+                    b.Property<string>("Answer43");
+
+                    b.Property<string>("Answer44");
+
+                    b.Property<string>("Answer45");
+
+                    b.Property<string>("Answer46");
+
+                    b.Property<string>("Answer47");
+
+                    b.Property<string>("Answer48");
+
+                    b.Property<string>("Answer49");
+
+                    b.Property<string>("Answer5");
+
+                    b.Property<string>("Answer50");
+
+                    b.Property<string>("Answer51");
+
+                    b.Property<string>("Answer52");
+
+                    b.Property<string>("Answer53");
+
+                    b.Property<string>("Answer54");
+
+                    b.Property<string>("Answer55");
+
+                    b.Property<string>("Answer56");
+
+                    b.Property<string>("Answer57");
+
+                    b.Property<string>("Answer58");
+
+                    b.Property<string>("Answer59");
+
+                    b.Property<string>("Answer6");
+
+                    b.Property<string>("Answer60");
+
+                    b.Property<string>("Answer61");
+
+                    b.Property<string>("Answer62");
+
+                    b.Property<string>("Answer63");
+
+                    b.Property<string>("Answer64");
+
+                    b.Property<string>("Answer65");
+
+                    b.Property<string>("Answer66");
+
+                    b.Property<string>("Answer67");
+
+                    b.Property<string>("Answer68");
+
+                    b.Property<string>("Answer69");
+
+                    b.Property<string>("Answer7");
+
+                    b.Property<string>("Answer70");
+
+                    b.Property<string>("Answer71");
+
+                    b.Property<string>("Answer72");
+
+                    b.Property<string>("Answer8");
+
+                    b.Property<string>("Answer9");
+
+                    b.Property<string>("ClientID");
+
+                    b.Property<DateTime>("ConductDate");
+
+                    b.Property<int>("EnrollmentID");
+
+                    b.Property<int>("ParentAssessmentID");
+
+                    b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AssessmentEditId");
+                    b.HasIndex("ClientID");
 
-                    b.HasIndex("AssessmentId");
+                    b.HasIndex("EnrollmentID");
 
-                    b.ToTable("Answers");
-                });
-
-            modelBuilder.Entity("TherapyDashboard.Models.Database.Assessment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AssessmentType");
-
-                    b.Property<string>("ClientId")
-                        .IsRequired();
-
-                    b.Property<string>("ConductedBy")
-                        .IsRequired();
-
-                    b.Property<DateTime>("ConductedOn");
-
-                    b.Property<int>("EnrollmentId");
-
-                    b.Property<int>("Score");
-
-                    b.Property<string>("Tag");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EnrollmentId");
-
-                    b.ToTable("Assessments");
-                });
-
-            modelBuilder.Entity("TherapyDashboard.Models.Database.AssessmentEdit", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AssessmentId");
-
-                    b.Property<string>("ConductedBy")
-                        .IsRequired();
-
-                    b.Property<DateTime>("ConductedOn");
-
-                    b.Property<int>("Score");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AssessmentId");
-
-                    b.ToTable("AssessmentEdits");
+                    b.ToTable("CFARSAssessments");
                 });
 
             modelBuilder.Entity("TherapyDashboard.Models.Database.Client", b =>
@@ -308,6 +403,152 @@ namespace TherapyDashboard.Migrations
                     b.HasIndex("ClientForeignKey");
 
                     b.ToTable("Enrollments");
+                });
+
+            modelBuilder.Entity("TherapyDashboard.Models.Database.PCLAssessment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Answer1");
+
+                    b.Property<string>("Answer10");
+
+                    b.Property<string>("Answer11");
+
+                    b.Property<string>("Answer12");
+
+                    b.Property<string>("Answer13");
+
+                    b.Property<string>("Answer14");
+
+                    b.Property<string>("Answer15");
+
+                    b.Property<string>("Answer16");
+
+                    b.Property<string>("Answer17");
+
+                    b.Property<string>("Answer18");
+
+                    b.Property<string>("Answer19");
+
+                    b.Property<string>("Answer2");
+
+                    b.Property<string>("Answer20");
+
+                    b.Property<string>("Answer3");
+
+                    b.Property<string>("Answer4");
+
+                    b.Property<string>("Answer5");
+
+                    b.Property<string>("Answer6");
+
+                    b.Property<string>("Answer7");
+
+                    b.Property<string>("Answer8");
+
+                    b.Property<string>("Answer9");
+
+                    b.Property<string>("ClientID");
+
+                    b.Property<DateTime>("ConductDate");
+
+                    b.Property<int>("EnrollmentID");
+
+                    b.Property<int>("ParentAssessmentID");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientID");
+
+                    b.HasIndex("EnrollmentID");
+
+                    b.ToTable("PCLAssessments");
+                });
+
+            modelBuilder.Entity("TherapyDashboard.Models.Database.PPSRAssessment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Answer1");
+
+                    b.Property<string>("Answer10");
+
+                    b.Property<string>("Answer11");
+
+                    b.Property<string>("Answer12");
+
+                    b.Property<string>("Answer13");
+
+                    b.Property<string>("Answer14");
+
+                    b.Property<string>("Answer15");
+
+                    b.Property<string>("Answer16");
+
+                    b.Property<string>("Answer17");
+
+                    b.Property<string>("Answer18");
+
+                    b.Property<string>("Answer19");
+
+                    b.Property<string>("Answer2");
+
+                    b.Property<string>("Answer20");
+
+                    b.Property<string>("Answer21");
+
+                    b.Property<string>("Answer22");
+
+                    b.Property<string>("Answer23");
+
+                    b.Property<string>("Answer24");
+
+                    b.Property<string>("Answer25");
+
+                    b.Property<string>("Answer26");
+
+                    b.Property<string>("Answer27");
+
+                    b.Property<string>("Answer28");
+
+                    b.Property<string>("Answer3");
+
+                    b.Property<string>("Answer4");
+
+                    b.Property<string>("Answer5");
+
+                    b.Property<string>("Answer6");
+
+                    b.Property<string>("Answer7");
+
+                    b.Property<string>("Answer8");
+
+                    b.Property<string>("Answer9");
+
+                    b.Property<string>("ClientID");
+
+                    b.Property<DateTime>("ConductDate");
+
+                    b.Property<int>("EnrollmentID");
+
+                    b.Property<int>("ParentAssessmentID");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientID");
+
+                    b.HasIndex("EnrollmentID");
+
+                    b.ToTable("PPSRAssessments");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -355,30 +596,15 @@ namespace TherapyDashboard.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("TherapyDashboard.Models.Database.Answer", b =>
+            modelBuilder.Entity("TherapyDashboard.Models.Database.CFARSAssessment", b =>
                 {
-                    b.HasOne("TherapyDashboard.Models.Database.AssessmentEdit")
-                        .WithMany("ChangedAnswers")
-                        .HasForeignKey("AssessmentEditId");
+                    b.HasOne("TherapyDashboard.Models.Database.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientID");
 
-                    b.HasOne("TherapyDashboard.Models.Database.Assessment")
-                        .WithMany("Answers")
-                        .HasForeignKey("AssessmentId");
-                });
-
-            modelBuilder.Entity("TherapyDashboard.Models.Database.Assessment", b =>
-                {
                     b.HasOne("TherapyDashboard.Models.Database.Enrollment", "Enrollment")
-                        .WithMany("Assessments")
-                        .HasForeignKey("EnrollmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("TherapyDashboard.Models.Database.AssessmentEdit", b =>
-                {
-                    b.HasOne("TherapyDashboard.Models.Database.Assessment", "Assessment")
-                        .WithMany("Edits")
-                        .HasForeignKey("AssessmentId")
+                        .WithMany("CFARSAssessments")
+                        .HasForeignKey("EnrollmentID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -387,6 +613,30 @@ namespace TherapyDashboard.Migrations
                     b.HasOne("TherapyDashboard.Models.Database.Client", "Client")
                         .WithMany("Enrollments")
                         .HasForeignKey("ClientForeignKey");
+                });
+
+            modelBuilder.Entity("TherapyDashboard.Models.Database.PCLAssessment", b =>
+                {
+                    b.HasOne("TherapyDashboard.Models.Database.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientID");
+
+                    b.HasOne("TherapyDashboard.Models.Database.Enrollment", "Enrollment")
+                        .WithMany("PCLAssessments")
+                        .HasForeignKey("EnrollmentID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("TherapyDashboard.Models.Database.PPSRAssessment", b =>
+                {
+                    b.HasOne("TherapyDashboard.Models.Database.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientID");
+
+                    b.HasOne("TherapyDashboard.Models.Database.Enrollment", "Enrollment")
+                        .WithMany("PPSRAssessments")
+                        .HasForeignKey("EnrollmentID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

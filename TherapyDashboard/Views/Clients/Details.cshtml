@@ -3,7 +3,13 @@
 @{
     ViewData["Title"] = Model.Id + " Details";
 }
-
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Clients">Manage Clients</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Client @Model.Id</li>
+    </ol>
+</nav>
 <h1>Client @Model.Id</h1>
 
 <div class="row">
@@ -13,39 +19,7 @@
                 <label asp-for="Id" class="control-label"></label>
                 <input asp-for="Id" class="form-control" />
                 <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div class="btn-group">
-                    <button class="btn btn-secondary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Enroll in Program</button>
-                    <div class="dropdown-menu">
-                        @foreach (var program in TherapyDashboard.Models.Database.EnrollmentHelper.Options)
-                        {
-                            <a class="dropdown-item" href="/Clients/EnrollInProgram?id=@Model.Id&program=@program.Text">@program.Text</a>
-                        }
-                    </div>
-                </div>
-            </div>
-            @if (Model.Enrollments != null)
-            {
-                @foreach (var enrollment in Model.Enrollments)
-                {
-                    @if (enrollment.End.Ticks == 0)
-                    {
-                        <div class="form-group">
-                            <div class="btn-group">
-                                <button class="btn btn-secondary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@enrollment.ParticipatingIn (@enrollment.Start)</button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/Clients/EndEnrollment?id=@enrollment.Id&client=@Model.Id">End</a>
-                                    @if (enrollment.Assessments == null)
-                                    {
-                                        <a class="dropdown-item" href="/Clients/DeleteEnrollment?id=@enrollment.Id&client=@Model.Id">Delete</a>
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                    }
-                }
-            }
+            </div>            
             <div class="form-group">
                 <!-- Race tag dropdown -->
                 <label asp-for="Race" class="control-label"></label>
@@ -79,16 +53,142 @@
             </div>
             @if (User.IsInRole(RoleType.Admin))
                 {
-            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete Client</a>
+                <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete Client</a>
                }
         </form>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-10">
+        <div class="form-group">
+            <div class="btn-group">
+                <button class="btn btn-secondary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Enroll in Program</button>
+                <div class="dropdown-menu">
+                    @foreach (var program in TherapyDashboard.Models.Database.EnrollmentHelper.Options)
+                    {
+                        <a class="dropdown-item" href="/Clients/EnrollInProgram?id=@Model.Id&program=@program.Text">@program.Text</a>
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- begin enrollments section -->
+        @if (Model.Enrollments != null)
+        {
+            @foreach (var enrollment in Model.Enrollments)
+            {
+                <div class="form-group">
+                    <!-- header text for enrollment-->
+                    <div class="row">
+                        @if (enrollment.End.Ticks == 0) // if current enrollment has no end date assigned to it (if enrollment is currently active)
+                        {
+                            <span class="h2">@enrollment.ParticipatingIn (@enrollment.Start.ToString("d") - Current)</span>
+                        }
+                        else
+                        {
+                            <span class="h2">@enrollment.ParticipatingIn (@enrollment.Start.ToString("d")  - @enrollment.End.ToString("d"))</span>
+                        }
 
-<div>
-    <a asp-action="Index">Back to Client Search</a>
+                        <!-- dropdown with list of actions for enrollment -->
+                        <div class="btn-group">
+                            <button class="btn btn-info dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Actions</button>
+                            <div class="dropdown-menu">
+
+                                @if (enrollment.End.Ticks == 0) // if enrollment is ongoing
+                                {
+                                    <!--Conduct New Assessment section-->
+                                    <h6 class="dropdown-header">Conduct New Assessment</h6>
+                                    <a asp-controller="Assessments" asp-action="ConductCFARS" asp-route-enrollmentid="@enrollment.Id" class="dropdown-item" target="_blank">CFARS</a>
+                                    <a asp-controller="Assessments" asp-action="ConductPPSR" asp-route-enrollmentid="@enrollment.Id" class="dropdown-item" target="_blank">PPS-R</a>
+                                    <a asp-controller="Assessments" asp-action="ConductPCL" asp-route-enrollmentid="@enrollment.Id" class="dropdown-item" target="_blank">PCL</a>
+                                    <div class="dropdown-divider"></div>
+                                }
+
+
+                                @if (enrollment.End.Ticks == 0 || enrollment.CFARSAssessments == null) // if enrollment is either ongoing or has no assessments
+                                {
+                                    <!--Enrollment Management section-->
+                                    <h6 class="dropdown-header">Manage Enrollment</h6>
+                                }
+                                @if (enrollment.End.Ticks == 0) // if enrollment is ongoing
+                                {
+                                    <a class="dropdown-item" href="/Clients/EndEnrollment?id=@enrollment.Id&client=@Model.Id">End Today</a>
+                                }
+                                @if (enrollment.CFARSAssessments == null) // if there are no assessments so far
+                                {
+                                    <a class="dropdown-item" href="/Clients/DeleteEnrollment?id=@enrollment.Id&client=@Model.Id">Delete</a>
+                                }
+
+
+                                @if (enrollment.End.Ticks != 0 && enrollment.AssessmentCount != 0)
+                                {
+                                    <!--No actions available-->
+                                    <h6 class="dropdown-header">No Actions Available</h6>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- list of all assessments in current program enrollment -->
+                    @if (enrollment.AssessmentCount == 0)
+                    {
+                        <small class="h4 text-muted">No assessments in this program enrollment at this time.</small>
+                    }
+                    else
+                    {
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (@enrollment.CFARSAssessments != null)
+                                {
+                                    @foreach (var assessment in enrollment.CFARSAssessments.OrderBy(x => x.ConductDate))
+                                    {
+                                        <tr>
+                                            <th scope="row"><a asp-controller="Assessments" asp-action="ViewCFARS" asp-route-id="@assessment.Id"> @assessment.ConductDate.ToString("d")</a></th>
+                                            <th>CFARS</th>
+                                            <th>@assessment.Score</th>
+                                        </tr>
+                                    }}
+                                @if (enrollment.PPSRAssessments != null)
+                                {
+                                    @foreach (var assessment in enrollment.PPSRAssessments.OrderBy(x => x.ConductDate))
+                                    {
+                                        <tr>
+                                            <th scope="row"><a asp-controller="Assessments" asp-action="ViewPPSR" asp-route-id="@assessment.Id"> @assessment.ConductDate.ToString("d")</a></th>
+                                            <th>PPSR</th>
+                                            <th>@assessment.Score</th>
+                                        </tr>
+                                    }}
+                                @if (enrollment.PCLAssessments != null)
+                                {
+                                    @foreach (var assessment in enrollment.PCLAssessments.OrderBy(x => x.ConductDate))
+                                    {
+                                        <tr>
+                                            <th scope="row"><a asp-controller="Assessments" asp-action="ViewPCL" asp-route-id="@assessment.Id"> @assessment.ConductDate.ToString("d")</a></th>
+                                            <th>PCL</th>
+                                            <th>@assessment.Score</th>
+                                        </tr>
+                                    }}
+                            </tbody>
+                        </table>
+                    }
+                    
+                </div>
+            }
+        }
+        <!-- end enrollments section -->
+    </div>
 </div>
 
-@section Scripts{
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    <div>
+        <a asp-action="Index">Back to Client Search</a>
+    </div>
+
+    @section Scripts{
+        @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

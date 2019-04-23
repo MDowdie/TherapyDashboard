@@ -17,11 +17,11 @@ namespace TherapyDashboard.Models
         {
         }
 
-        public DbSet<Assessment> Assessments { get; set; }
+        public DbSet<CFARSAssessment> CFARSAssessments { get; set; }
+        public DbSet<PPSRAssessment> PPSRAssessments { get; set; }
+        public DbSet<PCLAssessment> PCLAssessments { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
-        public DbSet<Answer> Answers { get; set; }
-        public DbSet<AssessmentEdit> AssessmentEdits { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -1,0 +1,180 @@
+﻿@model TherapyDashboard.Models.Database.PPSRAssessment
+@using TherapyDashboard.Areas.Identity.Data
+@{
+    ViewData["Title"] = "View PPS-R Assessment";
+}
+
+<h1>Empowerment Scale (PPS-R), for Client @Model.ClientID</h1>
+<h3><span class="badge badge-secondary">@Model.Score</span> Dated @Model.ConductDate.ToString("d")</h3>
+
+<div class="row">
+    <div class="col-md-12">
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Subscale</th>
+                    <th scope="col">Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>A. Perceptions of Power and Competence</th>
+                    <th><span class="badge badge-secondary">@Model.SubscaleAScore</span></th>
+                </tr>
+                <tr>
+                    <th>B. Self-Nurturance and Resource Access</th>
+                    <th><span class="badge badge-secondary">@Model.SubscaleBScore</span></th>
+                </tr>
+                <tr>
+                    <th>C. Interpersonal Assertiveness</th>
+                    <th><span class="badge badge-secondary">@Model.SubscaleCScore</span></th>
+                </tr>
+                <tr>
+                    <th>D. Awareness of Cultural Discrimination</th>
+                    <th><span class="badge badge-secondary">@Model.SubscaleDScore</span></th>
+                </tr>
+                <tr>
+                    <th>E. Expression of Anger and Confrontation</th>
+                    <th><span class="badge badge-secondary">@Model.SubscaleEScore</span></th>
+                </tr>
+                <tr>
+                    <th>F. Autonomy</th>
+                    <th><span class="badge badge-secondary">@Model.SubscaleFScore</span></th>
+                </tr>
+                <tr>
+                    <th>G. Personal Strength and Social Activism</th>
+                    <th><span class="badge badge-secondary">@Model.SubscaleGScore</span></th>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+        <form>
+            <p>The following statements identify feelings or experiences that some people use to describe themselves. Please answer each question in terms of any aspects of your personal identity that are important to you as a woman, such as gender, race, ethnicity, culture, nationality, sexual orientation, family background, etc. There are no right or wrong answers.</p>
+            <div class="form-group">
+                <label class="control-label">1. I have equal relationships with important others in my life.</label>
+                <select class="form-control" asp-for="Answer1" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">2. It is important to me to be financially independent.</label>
+                <select class="form-control" asp-for="Answer2" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">3. It is difficult for me to be assertive with others when I need to be.</label>
+                <select class="form-control" asp-for="Answer3" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">4. I can speak up for my needs instead of always taking care of other people's needs.</label>
+                <select class="form-control" asp-for="Answer4" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">5. I feel prepared to deal with the discrimination I experience in today's society.</label>
+                <select class="form-control" asp-for="Answer5" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">6. It is difficult for me to recognize when I am angry.</label>
+                <select class="form-control" asp-for="Answer6" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">7. I feel comfortable in confronting my instructor/counselor/supervisor when we see things differently.</label>
+                <select class="form-control" asp-for="Answer7" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">8. I now understand how my cultural heritage has shaped who I am today.</label>
+                <select class="form-control" asp-for="Answer8" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">9. I give in to others so as not to displease or anger them.</label>
+                <select class="form-control" asp-for="Answer9" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">10. I don't feel good about myself as a woman.</label>
+                <select class="form-control" asp-for="Answer10" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">11. When others criticize me, I do not trust myself to decide if they are right or if I should ignore their comments.</label>
+                <select class="form-control" asp-for="Answer11" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">12. I realize that given my current situation, I am coping the best I can.</label>
+                <select class="form-control" asp-for="Answer12" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">13. I am feeling in control of my life.</label>
+                <select class="form-control" asp-for="Answer13" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">14. In defining for myself what it means for me to be attractive, I depend on the opinion of others.</label>
+                <select class="form-control" asp-for="Answer14" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">15. I can't seem to make good decisions about my life.</label>
+                <select class="form-control" asp-for="Answer15" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">16. I do not feel competent to handle the situations that arise in my everyday life.</label>
+                <select class="form-control" asp-for="Answer16" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">17. I am determined to become a fully functioning person.</label>
+                <select class="form-control" asp-for="Answer17" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">18. I do not believe that there is anything I can do to make things better for women like me in today's society.</label>
+                <select class="form-control" asp-for="Answer18" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">19. I believe that a woman life me can succeed in any job or career that I choose.</label>
+                <select class="form-control" asp-for="Answer19" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">20. When making decisions about my life, I do not trust my own experience..</label>
+                <select class="form-control" asp-for="Answer20" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">21. It is difficult for me to tell others when I feel angry.</label>
+                <select class="form-control" asp-for="Answer21" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">22. I am able to satisfy my own sexual needs in a relationship.</label>
+                <select class="form-control" asp-for="Answer22" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">23. It is difficult for me to be good to myself.</label>
+                <select class="form-control" asp-for="Answer23" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">24. It is hard for me to ask for help or support from others when I need it.</label>
+                <select class="form-control" asp-for="Answer24" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">25. I want to help other women like me improve the quality of their lives.</label>
+                <select class="form-control" asp-for="Answer25" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">26. I feel uncomfortable in confronting important others in my life when we see things differently.</label>
+                <select class="form-control" asp-for="Answer26" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">27. I want to feel more appreciated for my cultural background.</label>
+                <select class="form-control" asp-for="Answer27" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">28. I am aware of my own strengths as a woman.</label>
+                <select class="form-control" asp-for="Answer28" asp-items="TherapyDashboard.Models.Database.Templates.PPSRList"></select>
+            </div>
+
+            <div class="form-group">
+                <a class="btn btn-primary" asp-controller="Clients" asp-action="Details" asp-route-id="@Model.ClientID">Back to Client Details</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

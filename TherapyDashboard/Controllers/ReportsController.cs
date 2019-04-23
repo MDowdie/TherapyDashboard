@@ -3,17 +3,24 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using TherapyDashboard.Models;
+using TherapyDashboard.Models.Database;
 
 namespace TherapyDashboard.Controllers
 {
+    [Authorize(Policy = "CanGenerateReports")]
     public class ReportsController : Controller
     {
+        private readonly TherapyDashboardContext _context;
+
         private readonly IHostingEnvironment _hostingEnvironment;
-        public ReportsController(IHostingEnvironment environment)
+        public ReportsController(IHostingEnvironment environment, TherapyDashboardContext context)
         {
+            _context = context;
             _hostingEnvironment = environment;
         }
 
@@ -21,6 +28,28 @@ namespace TherapyDashboard.Controllers
 
         public IActionResult Index()
         {
+            DbSet<CFARSAssessment> cfars = _context.CFARSAssessments;
+            DbSet<PPSRAssessment> ppsr = _context.PPSRAssessments;
+            DbSet<PCLAssessment> pcl = _context.PCLAssessments;
+
+
+            ViewData["avgCFARS"] = cfars.Average(c => c.Score);
+            ViewData["ctCFARS"] = cfars.Count();
+            ViewData["maxCFARS"] = cfars.Max(c => c.Score);
+            ViewData["minCFARS"] = cfars.Min(c => c.Score);
+
+            ViewData["avgPPSR"] = ppsr.Average(c => c.Score);
+            ViewData["ctPPSR"] = ppsr.Count();
+            ViewData["maxPPSR"] = ppsr.Max(c => c.Score);
+            ViewData["minPPSR"] = ppsr.Min(c => c.Score);
+
+            ViewData["avgPCL"] = pcl.Average(c => c.Score);
+            ViewData["ctPCL"] = pcl.Count();
+            ViewData["maxPCL"] = pcl.Max(c => c.Score);
+            ViewData["minPCL"] = pcl.Min(c => c.Score);
+
+
+
             return View();
         }
 
